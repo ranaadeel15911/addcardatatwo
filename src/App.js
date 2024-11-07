@@ -2730,7 +2730,7 @@ type="text"
 
   {wheelsAndTyres && (
     <div className="grid gap-4">
-      <select
+     <select
         onChange={(e) =>
           setCarDataTable((prevState) => ({
             ...prevState,
@@ -2746,6 +2746,10 @@ type="text"
           Wheel Types
         </option>
         <option value="Steel Wheels">Steel Wheels</option>
+        <option value="Steel Wheels With Caps">Steel Wheels With Caps</option>
+        <option value="Steel Rims with Wheels Caps">Steel Rims with Wheels Caps</option>
+        <option value="Steel Wheels with Full Wheel Caps">Steel Wheels with Full Wheel Caps</option>
+        <option value="Steel Wheels with Center Caps">Steel Wheels with Center Caps</option>
         <option value="Alloy Wheels">Alloy Wheels</option>
         <option value="Steel Wheels With Wheel Caps">Steel Wheels With Wheel Caps</option>
         <option value="Chrome Wheels">Chrome Wheels</option>
@@ -2860,7 +2864,7 @@ type="text"
     }`}
   >
     <div className="overflow-hidden">
-      <select
+    <select
         className="w-[40%] border-blue-300 border p-2 rounded"
         // value={carDataTable.steering.steeringType || ""}
         onChange={(e) =>
@@ -2878,6 +2882,7 @@ type="text"
         <option>Recirculating Ball Steering</option>
         <option>Hydraulic Power Steering (HPS)</option>
         <option>Electric Power Steering (EPS)</option>
+        <option>Rack & Pinion with Hydraulic Pump</option>
         <option>Electric Hydraulic Power Steering (EHPS)</option>
         <option>Four-Wheel Steering</option>
       </select>
@@ -2967,6 +2972,8 @@ type="text"
         <option value="3">CVT</option>
         <option value="6">Automatic(CVT)</option>
         <option value="7">Manual(CVT)</option>
+        <option value="4">Automatic(AGS)</option>
+        <option value="5">Manual(AGS)</option>
       </select>
 
       <select
@@ -3296,7 +3303,7 @@ type="text"
           <div>
             <p className="p-2 font-bold">Number of airbags:</p>
             <div className="flex gap-4 p-2">
-              {[0,1,2,4,5,6,7,8,10,12].map((num) => (
+              {[0,1,2,3,4,5,6,7,8,10,12].map((num) => (
                 <div key={num}>
                   <input
                     type="radio"
@@ -3317,7 +3324,7 @@ type="text"
           <div>
             <p className="p-2 font-bold">Number of seatbelts:</p>
             <div className="flex gap-4 p-2">
-              {[2, 4, 5, 7].map((num) => (
+              {[0,2, 4, 5, 7].map((num) => (
                 <div key={num}>
                   <input
                     type="radio"
@@ -3528,6 +3535,7 @@ type="text"
                 <option value={"Chrome"}>Chrome</option>
                 <option value={"Partial Chrome"}>Partial Chrome</option>
                 <option value={"Black"}>Black</option>
+                <option value={"Silver"}>Black</option>
                 <option value={"Satin Finish"}>Satin Finish</option>
                 <option value={"Gloss Finish"}>Gloss Finish</option>
                 <option value={"Textured/Plastic"}>Textured/Plastic</option>
@@ -4055,8 +4063,11 @@ type="text"
               <select /* value={carDataTable.carVersionFeatures[54].value} */ onChange={(e) => handleFeatureChange(55, e.target.value)} id="55" className="w-[30%] ml-10 border-blue-300 border p-2 rounded">
                 <option selected={!carDataTable?.carVersionFeatures[54]?.value?.length}  disabled>Seat Material Type</option>
                 <option value={"Leather"}>Leather</option>
+                <option value={"Leather with Powered Adjustment"}>Leather with Powered Adjustment</option>
+                <option value={"Premium Fabric with Manual Adjustment"}>Premium Fabric with Manual Adjustment</option>
                 <option value={"Leather with Manual Adjustment"}>Leather with Manual Adjustment</option>
                 <option value={"Hi Grade Fabric with Manual Adjustment"}>Hi Grade Fabric with Manual Adjustment</option>
+                <option value={"Fabric with Power Adjustment"}>Fabric with power adjustment</option>
                 <option value={"Black Leather with Manual Adjustment"}>Black Leather with Manual Adjustment</option>
                 <option value={"Fabric"}>Fabric</option>
                 <option value={"Fabric with Manual Adjustment"}>Fabric with Manual Adjustment</option>
@@ -4069,8 +4080,19 @@ type="text"
               </select>
               <div className="grid grid-cols-3 gap-2">
               <div>
-        <p className="p-2 font-bold">Rear headrest:</p>
+              <p className="p-2 font-bold">Rear headrest:</p>
         <div className="flex gap-2 p-2">
+          <div>
+            <input
+              type="radio"
+              name="rear_headrest"
+              id="rear_headrest_side"
+              checked={carDataTable.carVersionFeatures[52].value === "0"}
+              onChange={() => handleFeatureChange(53, "0")}
+            />
+            <span>0</span>
+            {/* <span> Two side rear headrests</span> */}
+          </div>
           <div>
             <input
               type="radio"
