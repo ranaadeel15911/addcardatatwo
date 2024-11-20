@@ -2179,1336 +2179,1602 @@ const handlePrice = (e)=>{
     });
 };
 const priceInRupees = 1;
-  return (
-    <>
-    <div className="pt-32 shadow-lg">
-      <div className="min-h-screen">
-        <h1 className="text-center font-bold text-3xl">Add Car Data</h1>
-        <h1 className="ml-4 font-bold text-lg mt-4">
-          Select Make Model and Version
-        </h1>
-
-        <div className="flex justify-between m-auto w-[70%] mt-8">
-        <select
-        className="w-[25%] border-blue-300 border p-2 rounded"
-        name="cars"
-        onChange={handleSelectChange}
-        // defaultValue=""
-      >
-        <option value="" >
-          Select Make
-        </option>
-
-        {/* Popular Cars */}
-        <optgroup label="Popular">
-          {makeData.popular.map((item) => (
-            <option key={item.name.en} value={item.name.id}>
-              {item.name.en}
-            </option>
-          ))}
-        </optgroup>
-
-        {/* Other Cars */}
-        <optgroup label="Others">
-          {makeData.others.map((item) => (
-            <option key={item.name.en} value={item.name.id}>
-              {item.name.en}
-            </option>
-          ))}
-        </optgroup>
-      </select>
-      <select onChange={handleVersions} className="w-[25%] border-blue-300 border p-2 rounded" name="cars">
-  <option value="" >
-    Select Model
-  </option>
-  {/* Popular Cars */}
-  {modelMap[make]?.popular?.length > 0 && (
-  <optgroup label="Popular">
-    {modelMap[make].popular.map((item) => (
-      <option key={item.en} value={item.id}>
-        {item.en}
+return (
+  <>
+  <div className="pt-32 shadow-lg">
+    <div className="min-h-screen">
+      <h1 className="text-center font-bold text-3xl">Add Car Data</h1>
+      <h1 className="ml-4 font-bold text-lg mt-4">
+         Make Model and Version
+      </h1>
+      <div className="flex justify-between m-auto w-[70%] mt-8">
+      <select
+      className="w-[25%] border-blue-300 border p-2 rounded"
+      name="cars"
+      onChange={handleSelectChange}
+      // defaultValue=""
+    >
+      <option value="" >
+        Select Make
       </option>
-    ))}
-  </optgroup>
-)}
 
-  {/* Other Cars */}
-  {modelMap[make]?.others?.length > 0 && (
-  <optgroup label="Others">
-    {modelMap[make].others.map((item) => (
-      <option key={item.en} value={item.id}>
-        {item.en}
-      </option>
-    ))}
-  </optgroup>
-)}
+      {/* Popular Cars */}
+      <optgroup label="Popular">
+        {makeData.popular.map((item) => (
+          <option key={item.name.en} value={item.name.id}>
+            {item.name.en}
+          </option>
+        ))}
+      </optgroup>
 
-</select>
-
-<select
-  className="w-[25%] border-blue-300 border p-2 rounded"
-  onChange={handleSelectedVersion} // Ensure the correct handler is called
-   // Set the default value
->
-  <option value="" >
-   Select Version
-  </option> {/* Disabled default option */}
-
-  {carVersion?.length > 0 ? ( // If carVersion has data, display options
-    carVersion.map((car) => (
-      <option 
-        key={car.name} // Use a unique key like car.id
-        value={car.name} // Use car.name for the value, or car.id if needed
-        arabic_name={car.car_version_Arb_name} // Custom attribute for Arabic name
-        year_name={car.year} // Custom attribute for Year name
-        id={car.id}
-      >
-        {car.name}
-      </option>
-    ))
-  ) : (
-    <option >
-      Version not found
+      {/* Other Cars */}
+      <optgroup label="Others">
+        {makeData.others.map((item) => (
+          <option key={item.name.en} value={item.name.id}>
+            {item.name.en}
+          </option>
+        ))}
+      </optgroup>
+    </select>
+    <select onChange={handleVersions} className="w-[25%] border-blue-300 border p-2 rounded" name="cars">
+<option value="" >
+  Select Model
+</option>
+{/* Popular Cars */}
+{modelMap[make]?.popular?.length > 0 && (
+<optgroup label="Popular">
+  {modelMap[make].popular.map((item) => (
+    <option key={item.en} value={item.id}>
+      {item.en}
     </option>
-  )}
-</select>
-
-
-
-
-
-        </div>
-        <div className="flex mt-6 justify-between">
-        <h1 className="ml-4 font-bold text-lg mt-4">
-          Add Price
-        </h1>
-        <h1 className="ml-4 font-bold text-lg mt-4">
-          Add Photo
-        </h1>
-        <h1 className="ml-4 font-bold text-lg mt-4">
-          
-        </h1>
-        </div>
-
-        <div className="flex justify-between m-auto w-[70%] mt-8">
-        <input
-        className="w-[25%] border-blue-300 border p-2 rounded"
-type="text"
-        name="cars"
-        onChange={handlePrice}
-        value={carDataTable.price.length > 0 ? carDataTable.price : ""}
-        // defaultValue=""
-        placeholder="Enter Price Here"
-        required
-      >
-      </input>
-      <input 
-      onChange={(e)=>setImage(e.target.files[0])}
-      type="file">
-      </input>
-      {/* <select onChange={handleVersions} className="w-[25%] border-blue-300 border p-2 rounded" name="cars">
-  <option value="" selected>
-    Select Model
-  </option>
-
-  {modelMap[make]?.popular?.length > 0 && (
-  <optgroup label="Popular">
-    {modelMap[make].popular.map((item) => (
-      <option key={item.en} value={item.id}>
-        {item.en}
-      </option>
-    ))}
-  </optgroup>
+  ))}
+</optgroup>
 )}
 
-
-  {modelMap[make]?.others?.length > 0 && (
-  <optgroup label="Others">
-    {modelMap[make].others.map((item) => (
-      <option key={item.en} value={item.id}>
-        {item.en}
-      </option>
-    ))}
-  </optgroup>
+{/* Other Cars */}
+{modelMap[make]?.others?.length > 0 && (
+<optgroup label="Others">
+  {modelMap[make].others.map((item) => (
+    <option key={item.en} value={item.id}>
+      {item.en}
+    </option>
+  ))}
+</optgroup>
 )}
 
 </select>
 
 <select
-  className="w-[25%] border-blue-300 border p-2 rounded"
-  onChange={handleSelectedVersion}
+className="w-[25%] border-blue-300 border p-2 rounded"
+onChange={handleSelectedVersion} // Ensure the correct handler is called
+ // Set the default value
 >
-  <option value="" disabled selected>
-    Version
-  </option> 
-  
-  {carVersion && carVersion.length > 0 ? ( 
-    carVersion.map((car) => (
-      <option 
-      id={car.id} 
-      key={car.id} 
-      value={car.version} 
-      arabic_name={car.car_version_Arb_name} 
-      year_name={car.year} 
+<option value="" >
+ Select Version
+</option> {/* Disabled default option */}
+
+{carVersion?.length > 0 ? ( // If carVersion has data, display options
+  carVersion.map((car) => (
+    <option 
+      key={car.name} // Use a unique key like car.id
+      value={car.name} // Use car.name for the value, or car.id if needed
+      arabic_name={car.car_version_Arb_name} // Custom attribute for Arabic name
+      year_name={car.year} // Custom attribute for Year name
+      id={car.id}
     >
       {car.name}
-    </option> 
-    ))
-  ) : <option value="" selected> version not found</option>} 
+    </option>
+  ))
+) : (
+  <option >
+    Version not found
+  </option>
+)}
+</select>
+
+
+
+
+
+      </div>
+      <div className="flex mt-6 justify-between">
+      <h1 className="ml-4 font-bold text-lg mt-4">
+        Add Price
+      </h1>
+      <h1 className="ml-4 font-bold text-lg mt-4">
+        Add Photo
+      </h1>
+      <h1 className="ml-4 font-bold text-lg mt-4">
+        
+      </h1>
+      </div>
+
+      <div className="flex justify-between m-auto w-[70%] mt-8">
+      <input
+      className="w-[25%] border-blue-300 border p-2 rounded"
+type="text"
+      name="cars"
+      onChange={handlePrice}
+      value={carDataTable.price.length > 0 ? carDataTable.price : ""}
+      // defaultValue=""
+      placeholder="Enter Price Here"
+      required
+    >
+    </input>
+    <input 
+    onChange={(e)=>setImage(e.target.files[0])}
+    type="file">
+    </input>
+    {/* <select onChange={handleVersions} className="w-[25%] border-blue-300 border p-2 rounded" name="cars">
+<option value="" selected>
+  Select Model
+</option>
+
+{modelMap[make]?.popular?.length > 0 && (
+<optgroup label="Popular">
+  {modelMap[make].popular.map((item) => (
+    <option key={item.en} value={item.id}>
+      {item.en}
+    </option>
+  ))}
+</optgroup>
+)}
+
+
+{modelMap[make]?.others?.length > 0 && (
+<optgroup label="Others">
+  {modelMap[make].others.map((item) => (
+    <option key={item.en} value={item.id}>
+      {item.en}
+    </option>
+  ))}
+</optgroup>
+)}
+
+</select>
+
+<select
+className="w-[25%] border-blue-300 border p-2 rounded"
+onChange={handleSelectedVersion}
+>
+<option value="" disabled selected>
+  Version
+</option> 
+
+{carVersion && carVersion.length > 0 ? ( 
+  carVersion.map((car) => (
+    <option 
+    id={car.id} 
+    key={car.id} 
+    value={car.version} 
+    arabic_name={car.car_version_Arb_name} 
+    year_name={car.year} 
+  >
+    {car.name}
+  </option> 
+  ))
+) : <option value="" selected> version not found</option>} 
 </select> */}
 
 
-        </div>
-
-        {/* General */}
-        {/* <div className="mt-24 p-4">
-          <button
-            onClick={() => setwheelTypeAccordian(!wheelTypeAccordian)}
-            className={`flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between`}
-          >
-            <span>General Information</span>
-            {wheelTypeAccordian ? (
-              <MdExpandLess className={`font-bold text-lg`} />
-            ) : (
-              <MdExpandMore className={`text-lg`} />
-            )}
-          </button>
-          <div
-            className={`grid overflow-hidden transition-all  duration-500 ${
-              wheelTypeAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div className="flex gap-6">
-                <select className="w-[25%] border-blue-300 border p-2 rounded">
-                  <option selected>Wheel Drive Types</option>
-                  <option>4x4</option>
-                  <option>FWD</option>
-                  <option>RWD</option>
-                  <option>AWD</option>
-                </select>
-                <select className="w-[25%] border-blue-300 border p-2 rounded">
-                  <option selected>vehicle type</option>
-                  <option>Sedan</option>
-                  <option>Hatchback</option>
-                  <option>SUV</option>
-                  <option>Crossover</option>
-                  <option>Coupe</option>
-                  <option>Minivan</option>
-                  <option>Pickup Truck</option>
-                  <option>Wagon</option>
-                  <option>Van</option>
-                  <option>Sports Car</option>
-                  <option>Luxury Car</option>
-                  <option>Motorcycle</option>
-                  <option>ATV</option>
-                  <option>RV</option>
-                  <option>Truck</option>
-                  <option>Bus</option>
-                </select>
-                <select className="w-[25%] border-blue-300 border p-2 rounded">
-                  <option selected>Fuel Types</option>
-                  <option>Petrol</option>
-                  <option>Diesel</option>
-                  <option>Hybrid</option>
-                  <option>Electric</option>
-                  <option>CNG</option>
-                  <option>LPG</option>
-                </select>
-                <select className="w-[25%] border-blue-300 border p-2 rounded">
-                  <option selected>Transmission</option>
-                  <option>Automatic</option>
-                  <option>Manual</option>
-                </select>
-              </div>
-              <br />
-              <div className="flex gap-6">
-                <input
-                  type="text"
-                  className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
-                  placeholder="Enter No of Doors"
-                />
-                <input
-                  type="text"
-                  className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
-                  placeholder="Enter Seating Capacity"
-                />
-                <input
-                  type="text"
-                  className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
-                  placeholder="Enter Engine Capacity"
-                />
-                <input
-                  type="text"
-                  className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
-                  placeholder="Enter No of Cylinder"
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* dimension */}
-        <div className="p-4 mt-12">
-  <button
-    onClick={() => setdimensionTypeAccordian(!dimensionTypeAccordian)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Dimension</span>
-    {dimensionTypeAccordian ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-
-  {dimensionTypeAccordian && (
-    <div className="grid gap-4">
-      <div className="m-auto w-full flex flex-wrap ">
-        <select
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              wheelDriveType: {
-                ...prevState.wheelDriveType,
-                id: Number(e.target.value) || 0,
-              },
-            }))
-          }
-          className="w-[45%] border-blue-300 border p-2 rounded"
-        >
-          <option selected={!carDataTable?.wheelDriveType?.id} disabled>
-            Wheel Drive Types
-          </option>
-          <option value="1">Front Wheel Drive</option>
-          <option value="2">Rear Wheel Drive</option>
-          <option value="3">All Wheel Drive</option>
-          <option value="4">4x4</option>
-        </select>
-        <select
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              vehicleType: {
-                ...prevState.vehicleType,
-                id: Number(e.target.value) || 0,
-              },
-            }))
-          }
-          className="w-[45%] border-blue-300 ml-16 border p-2 rounded"
-        >
-          <option selected={!carDataTable?.vehicleType?.id} disabled>
-            Vehicle Type
-          </option>
-          <option value="1">Sedan</option>
-          <option value="2">Hatchback</option>
-          <option value="3">SUV</option>
-          <option value="4">Truck</option>
-          <option value="5">Bus</option>
-          <option value="6">Sports Car</option>
-          <option value="7">Crossover</option>
-          <option value="8">Coupe</option>
-          <option value="9">Minivan</option>
-          <option value="10">Pickup Truck</option>
-          <option value="11">Wagon</option>
-          <option value="12">Van</option>
-          <option value="13">Luxury Car</option>
-          <option value="14">ATV</option>
-          <option value="15">RV</option>
-        </select>
-        <select
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              dimension: {
-                ...prevState.dimension,
-                numberofdoor:{
-                  ...prevState.dimension.numberofdoor,
-                  id: Number(e.target.value)} },
-            }))
-          }
-          className="w-[45%] mt-4 border-blue-300 border p-2 rounded"
-        >
-          <option selected={!carDataTable?.dimension?.numberofdoor?.id} disabled>
-            No of Doors
-          </option>
-          <option value="1">2</option>
-          <option value="2">3</option>
-          <option value="3">4</option>
-          <option value="4">5</option>
-        </select>
-        <select
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              dimension: {
-                ...prevState.dimension,
-                numberofseating:{
-                  ...prevState.dimension.numberofseating,
-                  id: Number(e.target.value)} },
-            }))
-          }
-          className="w-[45%] mt-4 border-blue-300 border ml-16 p-2 rounded"
-        >
-          <option selected={!carDataTable?.dimension?.numberofseating?.id} disabled>
-            Number of Seating Capacity
-          </option>
-          <option value="1">2 Seater</option>
-          <option value="2">4 Seater</option>
-          <option value="3">5 Seater</option>
-          <option value="4">6 Seater</option>
-          <option value="5">7 Seater</option>
-          <option value="6">8 Seater</option>
-          <option value="7">8+ Seater</option>
-        </select>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {[
-          { name: "overallLength", label: "Overall Length (mm)", type: "number" },
-          { name: "overallWidth", label: "Overall Width (mm)", type: "number" },
-          { name: "overallHeight", label: "Overall Height (mm)", type: "number" },
-          { name: "wheelBase", label: "Wheel Base (mm)", type: "number" },
-          { name: "groundClearance", label: "Ground Clearance (mm)", type: "number" },
-          { name: "kerbWeight", label: "Kerb Weight (kg)", type: "number" },
-          { name: "bootSpace", label: "Boot Space (L)", type: "number" },
-        ].map((dimension, index) => (
-          <div key={index} className="grid items-center w-[30%]">
-            <div>
-              <p className="p-2 font-bold">{dimension.label}:</p>
+      {/* General */}
+      {/* <div className="mt-24 p-4">
+        <button
+          onClick={() => setwheelTypeAccordian(!wheelTypeAccordian)}
+          className={`flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between`}
+        >
+          <span>General Information</span>
+          {wheelTypeAccordian ? (
+            <MdExpandLess className={`font-bold text-lg`} />
+          ) : (
+            <MdExpandMore className={`text-lg`} />
+          )}
+        </button>
+        <div
+          className={`grid overflow-hidden transition-all  duration-500 ${
+            wheelTypeAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="flex gap-6">
+              <select className="w-[25%] border-blue-300 border p-2 rounded">
+                <option selected>Wheel Drive Types</option>
+                <option>4x4</option>
+                <option>FWD</option>
+                <option>RWD</option>
+                <option>AWD</option>
+              </select>
+              <select className="w-[25%] border-blue-300 border p-2 rounded">
+                <option selected>vehicle type</option>
+                <option>Sedan</option>
+                <option>Hatchback</option>
+                <option>SUV</option>
+                <option>Crossover</option>
+                <option>Coupe</option>
+                <option>Minivan</option>
+                <option>Pickup Truck</option>
+                <option>Wagon</option>
+                <option>Van</option>
+                <option>Sports Car</option>
+                <option>Luxury Car</option>
+                <option>Motorcycle</option>
+                <option>ATV</option>
+                <option>RV</option>
+                <option>Truck</option>
+                <option>Bus</option>
+              </select>
+              <select className="w-[25%] border-blue-300 border p-2 rounded">
+                <option selected>Fuel Types</option>
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>Hybrid</option>
+                <option>Electric</option>
+                <option>CNG</option>
+                <option>LPG</option>
+              </select>
+              <select className="w-[25%] border-blue-300 border p-2 rounded">
+                <option selected>Transmission</option>
+                <option>Automatic</option>
+                <option>Manual</option>
+              </select>
+            </div>
+            <br />
+            <div className="flex gap-6">
               <input
-                name={dimension.name}
-                value={carDataTable.dimension[dimension.name] || ""} // Ensure it's empty if undefined
-                onChange={(e) =>
-                  setCarDataTable((prevState) => ({
-                    ...prevState,
-                    dimension: {
-                      ...prevState.dimension,
-                      [dimension.name]:
-                        dimension.type === "number"
-                          ? Number(e.target.value) || 0
-                          : e.target.value,
-                    },
-                  }))
-                }
-                placeholder="Enter in English"
-                className="border p-2 w-[100%] col-span-2"
-                type={dimension.type === "number" ? "number" : "text"}
+                type="text"
+                className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
+                placeholder="Enter No of Doors"
+              />
+              <input
+                type="text"
+                className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
+                placeholder="Enter Seating Capacity"
+              />
+              <input
+                type="text"
+                className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
+                placeholder="Enter Engine Capacity"
+              />
+              <input
+                type="text"
+                className="w-[25%] p-2 border border-blue-300 rounded placeholder:!text-black/70 "
+                placeholder="Enter No of Cylinder"
               />
             </div>
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </div> */}
+      {/* dimension */}
+      <div className="p-4 mt-12">
+<button
+  onClick={() => setdimensionTypeAccordian(!dimensionTypeAccordian)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Dimension</span>
+  {dimensionTypeAccordian ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
   )}
+</button>
+
+{dimensionTypeAccordian && (
+  <div className="grid gap-4">
+    <div className="m-auto w-full flex flex-wrap ">
+      <select
+        onChange={(e) =>
+          setCarDataTable((prevState) => ({
+            ...prevState,
+            wheelDriveType: {
+              ...prevState.wheelDriveType,
+              id: Number(e.target.value) || 0,
+            },
+          }))
+        }
+        className="w-[45%] border-blue-300 border p-2 rounded"
+      >
+        <option selected={!carDataTable?.wheelDriveType?.id} disabled>
+          Wheel Drive Types
+        </option>
+        <option value="1">Front Wheel Drive</option>
+        <option value="2">Rear Wheel Drive</option>
+        <option value="3">All Wheel Drive</option>
+        <option value="4">4x4</option>
+      </select>
+      <select
+        onChange={(e) =>
+          setCarDataTable((prevState) => ({
+            ...prevState,
+            vehicleType: {
+              ...prevState.vehicleType,
+              id: Number(e.target.value) || 0,
+            },
+          }))
+        }
+        className="w-[45%] border-blue-300 ml-16 border p-2 rounded"
+      >
+        <option selected={!carDataTable?.vehicleType?.id} disabled>
+          Vehicle Type
+        </option>
+        <option value="1">Sedan</option>
+        <option value="2">Hatchback</option>
+        <option value="3">SUV</option>
+        <option value="4">Truck</option>
+        <option value="5">Bus</option>
+        <option value="6">Sports Car</option>
+        <option value="7">Crossover</option>
+        <option value="8">Coupe</option>
+        <option value="9">Minivan</option>
+        <option value="10">Pickup Truck</option>
+        <option value="11">Wagon</option>
+        <option value="12">Van</option>
+        <option value="13">Luxury Car</option>
+        <option value="14">ATV</option>
+        <option value="15">RV</option>
+      </select>
+      <select
+        onChange={(e) =>
+          setCarDataTable((prevState) => ({
+            ...prevState,
+            dimension: {
+              ...prevState.dimension,
+              numberofdoor:{
+                ...prevState.dimension.numberofdoor,
+                id: Number(e.target.value)} },
+          }))
+        }
+        className="w-[45%] mt-4 border-blue-300 border p-2 rounded"
+      >
+        <option selected={!carDataTable?.dimension?.numberofdoor?.id} disabled>
+          No of Doors
+        </option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+      </select>
+      <select
+        onChange={(e) =>
+          setCarDataTable((prevState) => ({
+            ...prevState,
+            dimension: {
+              ...prevState.dimension,
+              numberofseating:{
+                ...prevState.dimension.numberofseating,
+                id: Number(e.target.value)} },
+          }))
+        }
+        className="w-[45%] mt-4 border-blue-300 border ml-16 p-2 rounded"
+      >
+        <option selected={!carDataTable?.dimension?.numberofseating?.id} disabled>
+          Number of Seating Capacity
+        </option>
+        <option value="1">2 Seater</option>
+        <option value="2">4 Seater</option>
+        <option value="3">5 Seater</option>
+        <option value="4">6 Seater</option>
+        <option value="5">7 Seater</option>
+        <option value="6">8 Seater</option>
+        <option value="7">8+ Seater</option>
+      </select>
+    </div>
+
+    <div className="flex flex-wrap gap-2">
+      {[
+        { name: "overallLength", label: "Overall Length (mm)", type: "number" },
+        { name: "overallWidth", label: "Overall Width (mm)", type: "number" },
+        { name: "overallHeight", label: "Overall Height (mm)", type: "number" },
+        { name: "wheelBase", label: "Wheel Base (mm)", type: "number" },
+        { name: "groundClearance", label: "Ground Clearance (mm)", type: "number" },
+        { name: "kerbWeight", label: "Kerb Weight (kg)", type: "number" },
+        { name: "bootSpace", label: "Boot Space (L)", type: "number" },
+      ].map((dimension, index) => (
+        <div key={index} className="grid items-center w-[30%]">
+          <div>
+            <p className="p-2 font-bold">{dimension.label}:</p>
+            <input
+              name={dimension.name}
+              value={carDataTable.dimension[dimension.name] || ""} // Ensure it's empty if undefined
+              onChange={(e) =>
+                setCarDataTable((prevState) => ({
+                  ...prevState,
+                  dimension: {
+                    ...prevState.dimension,
+                    [dimension.name]:
+                      dimension.type === "number"
+                        ? Number(e.target.value) || 0
+                        : e.target.value,
+                  },
+                }))
+              }
+              placeholder="Enter in English"
+              className="border p-2 w-[100%] col-span-2"
+              type={dimension.type === "number" ? "number" : "text"}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 </div>
 
 
 
 
-        {/* engine */}
-        <div className="p-4">
-  <button
-    onClick={() => setengineTypeAccordian(!engineTypeAccordian)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Engine</span>
-    {engineTypeAccordian ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
+      {/* engine */}
+      <div className="p-4">
+<button
+  onClick={() => setengineTypeAccordian(!engineTypeAccordian)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Engine</span>
+  {engineTypeAccordian ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
+  )}
+</button>
 
-  {engineTypeAccordian && (
-    <div className="grid gap-4">
-       <div className="m-auto w-full flex flex-wrap ">
-        <select
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              engine: {
-                ...prevState.engine,
-                numberofcylinder:{
-                  ...prevState.engine.numberofcylinder,
-                  id: Number(e.target.value)} },
-            }))
-          }
-          className="w-[45%] border-blue-300 border p-2 rounded"
-        >
-          <option selected={!carDataTable?.engine?.numberofcylinder?.id} disabled>
-            Number of Cylinders
-          </option>
-          <option value="1">3 Cylinder</option>
-          <option value="2">4 Cylinder</option>
-          <option value="3">5 Cylinder</option>
-          <option value="4">6 Cylinder</option>
-          <option value="5">8 Cylinder</option>
-          <option value="6">10 Cylinder</option>
-          <option value="7">12 Cylinder</option>
-          <option value="8">16 Cylinder</option>
-        </select>
-        <select
-        className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
-        // value={carDataTable.engine.engineType || ""}
+{engineTypeAccordian && (
+  <div className="grid gap-4">
+     <div className="m-auto w-full flex flex-wrap ">
+      <select
         onChange={(e) =>
           setCarDataTable((prevState) => ({
             ...prevState,
             engine: {
               ...prevState.engine,
-              engineType: e.target.value,
-            },
+              numberofcylinder:{
+                ...prevState.engine.numberofcylinder,
+                id: Number(e.target.value)} },
           }))
         }
+        className="w-[45%] border-blue-300 border p-2 rounded"
       >
-        <option disabled selected={!carDataTable?.engine?.engineType?.length}>Engine Type</option>
-        <option>Petrol</option>
-        <option>Diesel</option>
-        <option>Electric</option>
-        <option>CNG</option>
-        <option>LPG</option>
-        <option>Hybrid</option>
+        <option selected={!carDataTable?.engine?.numberofcylinder?.id} disabled>
+          Number of Cylinders
+        </option>
+        <option value="9">1 Cylinder</option>
+        <option value="10">2 Cylinder</option>
+        <option value="1">3 Cylinder</option>
+        <option value="2">4 Cylinder</option>
+        <option value="3">5 Cylinder</option>
+        <option value="4">6 Cylinder</option>
+        <option value="11">7 Cylinder</option>
+        <option value="5">8 Cylinder</option>
+        <option value="6">10 Cylinder</option>
+        <option value="7">12 Cylinder</option>
+        <option value="8">16 Cylinder</option>
       </select>
-      
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {[
-          // { name: "engineType", label: "Engine type", type: "string" },
-          { name: "displacement", label: "Displacement cc", type: "number" },
-          { name: "horsepower", label: "Horsepower", type: "string" },
-          { name: "torque", label: "Torque", type: "string" },
-          { name: "cylinderConfiguration", label: "Cylinder configuration", type: "string" },
-          // { name: "numberOfCylinders", label: "Number of Cylinder", type: "number" },
-          { name: "compressionRatio", label: "Compression ratio", type: "string"},
-          { name: "valvesPerCylinder", label: "Valves per cylinder", type: "number" },
-          { name: "valveMechanism", label: "Valve mechanism", type: "string" },
-          { name: "fuelSystem", label: "Fuel system", type: "string" },
-          { name: "maxSpeedKmh", label: "Max speed kmh", type: "number" },
-        ].map((engine, index) => (
-          <div key={index} className="grid items-center w-[30%]">
-            <div>
-              <p className="p-2 font-bold">{engine.label}:</p>
-              <input
-                name={engine.name}
-                value={carDataTable.engine[engine.name] || ""} // Ensure it is empty if undefined
-                onChange={(e) =>
-                  setCarDataTable((prevState) => ({
-                    ...prevState,
-                    engine: {
-                      ...prevState.engine,
-                      [engine.name]:
-                        engine.type === "number"
-                          ? Number(e.target.value) || 0
-                          : e.target.value,
-                    },
-                  }))
-                }
-                placeholder="Enter in English"
-                className="border p-2 w-[100%] col-span-2"
-                type={engine.type === "number" ? "number" : "text"}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      <select
+      className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
+      // value={carDataTable.engine.engineType || ""}
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          engine: {
+            ...prevState.engine,
+            engineType: e.target.value,
+          },
+        }))
+      }
+    >
+      <option disabled selected={!carDataTable?.engine?.engineType?.length}>Engine Type</option>
+      <option>Petrol</option>
+      <option>Diesel</option>
+      <option>Electric</option>
+      <option>CNG</option>
+      <option>LPG</option>
+      <option>Hybrid</option>
+    </select>
+    
     </div>
-  )}
+    <div className="flex flex-wrap gap-2">
+      {[
+        // { name: "engineType", label: "Engine type", type: "string" },
+        { name: "displacement", label: "Displacement cc", type: "number" },
+        { name: "horsepower", label: "Horsepower", type: "string" },
+        { name: "torque", label: "Torque", type: "string" },
+        { name: "cylinderConfiguration", label: "Cylinder configuration", type: "string" },
+        // { name: "numberOfCylinders", label: "Number of Cylinder", type: "number" },
+        { name: "compressionRatio", label: "Compression ratio", type: "string"},
+        { name: "valvesPerCylinder", label: "Valves per cylinder", type: "number" },
+        { name: "valveMechanism", label: "Valve mechanism", type: "string" },
+        { name: "fuelSystem", label: "Fuel system", type: "string" },
+        { name: "maxSpeedKmh", label: "Max speed kmh", type: "number" },
+      ].map((engine, index) => (
+        <div key={index} className="grid items-center w-[30%]">
+          <div>
+            <p className="p-2 font-bold">{engine.label}:</p>
+            <input
+              name={engine.name}
+              value={carDataTable.engine[engine.name] || ""} // Ensure it is empty if undefined
+              onChange={(e) =>
+                setCarDataTable((prevState) => ({
+                  ...prevState,
+                  engine: {
+                    ...prevState.engine,
+                    [engine.name]:
+                      engine.type === "number"
+                        ? Number(e.target.value) || 0
+                        : e.target.value,
+                  },
+                }))
+              }
+              placeholder="Enter in English"
+              className="border p-2 w-[100%] col-span-2"
+              type={engine.type === "number" ? "number" : "text"}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 </div>
 
 {/* Wheels and Tyres start */}
 <div className="p-4">
-  <button
-    onClick={() => setWheelsAndTyres(!wheelsAndTyres)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Wheels and Tyres</span>
-    {wheelsAndTyres ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-
-  {wheelsAndTyres && (
-    <div className="grid gap-4">
-     <select
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            wheelstyres: {
-              ...prevState.wheelstyres,
-              wheelType: e.target.value,
-            },
-          }))
-        }
-        className="m-auto w-[45%] border-blue-300 border p-2 rounded"
-      >
-        <option  disabled selected={!carDataTable?.wheelstyres?.wheelType?.length}>
-          Wheel Types
-        </option>
-        <option value="Steel Wheels">Steel Wheels</option>
-        <option value="Steel Wheels With Caps">Steel Wheels With Caps</option>
-        <option value="Steel Rims with Wheels Caps">Steel Rims with Wheels Caps</option>
-        <option value="Steel Wheels with Full Wheel Caps">Steel Wheels with Full Wheel Caps</option>
-        <option value="Steel Wheels with Center Caps">Steel Wheels with Center Caps</option>
-        <option value="Alloy Wheels">Alloy Wheels</option>
-        <option value="Steel Wheels With Wheel Caps">Steel Wheels With Wheel Caps</option>
-        <option value="Chrome Wheels">Chrome Wheels</option>
-        <option value="Forged Wheels">Forged Wheels</option>
-        <option value="Magnesium Wheels">Magnesium Wheels</option>
-        <option value="Carbon Fiber Wheels">Carbon Fiber Wheels</option>
-        <option value="Carbon Fiber Wheels">Carbon Fiber Wheels</option>
-        <option value="Split Rim Wheels">Split Rim Wheels</option>
-        <option value="Wire Wheels">Wire Wheels</option>
-        <option value="Beadlock Wheels">Beadlock Wheels</option>
-      </select>
-
-      <div className="flex flex-wrap gap-2">
-        {[
-          { name: "pcd", label: "PCD", type: "string" },
-          { name: "wheelSizeIn", label: "Wheel Size", type: "number" },
-          { name: "tyreSize", label: "Tyre Size", type: "string" },
-          { name: "spareTyreSizeIn", label: "Spare Tyre Size", type: "number" },
-        ].map((wheelstyres, index) => (
-          <div key={index} className="grid items-center w-[30%]">
-            <div>
-              <p className="p-2 font-bold">{wheelstyres.label}:</p>
-             <input
-                name={wheelstyres.name}
-                value={carDataTable.wheelstyres[wheelstyres.name] || ""} // Ensure it's empty if undefined
-                onChange={(e) =>
-                  setCarDataTable((prevState) => ({
-                    ...prevState,
-                    wheelstyres: {
-                      ...prevState.wheelstyres,
-                      [wheelstyres.name]:
-                        wheelstyres.type === "number"
-                          ? Number(e.target.value) || 0
-                          : e.target.value,
-                    },
-                  }))
-                }
-                placeholder="Enter in English"
-                className="border p-2 w-[100%] col-span-2"
-                type={wheelstyres.type === "number" ? "number" : "text"}
-              />
-            </div>
-          </div>
-        ))}
-        <div>
-        <p className="p-2 font-bold">Spare Tyre:</p>
-        <div className="flex gap-x-2"> 
-        <div className="flex">
-          <p className="p-2 font-bold">Yes</p>
-          <input
-              type="radio"
-              name="yes"
-              id="wheelsyes"
-              value="yes"
-              checked={carDataTable.wheelstyres.spareTyreSizeValue === "yes"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  wheelstyres: {
-                    ...prevState.wheelstyres,
-                    spareTyreSizeValue: e.target.value,
-                  },
-                }))
-              }
-            />
-        </div>
-        <div className="flex">
-          <p className="p-2 font-bold">No</p>
-          <input
-              type="radio"
-              name="no"
-              id="wheelsno"
-              value="no"
-              checked={carDataTable.wheelstyres.spareTyreSizeValue === "no"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  wheelstyres: {
-                    ...prevState.wheelstyres,
-                    spareTyreSizeValue: e.target.value,
-                  },
-                }))
-              }
-            />
-        </div>
-       
-      </div>
-      </div>
-      </div>
-      
-    </div>
+<button
+  onClick={() => setWheelsAndTyres(!wheelsAndTyres)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Wheels and Tyres</span>
+  {wheelsAndTyres ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
   )}
+</button>
+
+{wheelsAndTyres && (
+  <div className="grid gap-4">
+    <select
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          wheelstyres: {
+            ...prevState.wheelstyres,
+            wheelType: e.target.value,
+          },
+        }))
+      }
+      className="m-auto w-[45%] border-blue-300 border p-2 rounded"
+    >
+      <option  disabled selected={!carDataTable?.wheelstyres?.wheelType?.length}>
+        Wheel Types
+      </option>
+      <option value="Steel Wheels">Steel Wheels</option>
+      <option value="Steel Wheels With Caps">Steel Wheels With Caps</option>
+      <option value="Steel Rims with Wheels Caps">Steel Rims with Wheels Caps</option>
+      <option value="Steel Wheels with Full Wheel Caps">Steel Wheels with Full Wheel Caps</option>
+      <option value="Steel Wheels with Center Caps">Steel Wheels with Center Caps</option>
+      <option value="Alloy Wheels">Alloy Wheels</option>
+      <option value="Steel Wheels With Wheel Caps">Steel Wheels With Wheel Caps</option>
+      <option value="Chrome Wheels">Chrome Wheels</option>
+      <option value="Forged Wheels">Forged Wheels</option>
+      <option value="Magnesium Wheels">Magnesium Wheels</option>
+      <option value="Carbon Fiber Wheels">Carbon Fiber Wheels</option>
+      <option value="Split Rim Wheels">Split Rim Wheels</option>
+      <option value="Wire Wheels">Wire Wheels</option>
+      <option value="Beadlock Wheels">Beadlock Wheels</option>
+    </select>
+
+    <div className="flex flex-wrap gap-2">
+      {[
+        { name: "pcd", label: "PCD", type: "string" },
+        { name: "wheelSizeIn", label: "Wheel Size", type: "number" },
+        { name: "tyreSize", label: "Tyre Size", type: "string" },
+        { name: "spareTyreSizeIn", label: "Spare Tyre Size", type: "number" },
+      ].map((wheelstyres, index) => (
+        <div key={index} className="grid items-center w-[30%]">
+          <div>
+            <p className="p-2 font-bold">{wheelstyres.label}:</p>
+           <input
+              name={wheelstyres.name}
+              value={carDataTable.wheelstyres[wheelstyres.name] || ""} // Ensure it's empty if undefined
+              onChange={(e) =>
+                setCarDataTable((prevState) => ({
+                  ...prevState,
+                  wheelstyres: {
+                    ...prevState.wheelstyres,
+                    [wheelstyres.name]:
+                      wheelstyres.type === "number"
+                        ? Number(e.target.value) || 0
+                        : e.target.value,
+                  },
+                }))
+              }
+              placeholder="Enter in English"
+              className="border p-2 w-[100%] col-span-2"
+              type={wheelstyres.type === "number" ? "number" : "text"}
+            />
+          </div>
+        </div>
+      ))}
+      <div>
+      <p className="p-2 font-bold">Spare Tyre:</p>
+      <div className="flex gap-x-2"> 
+      <div className="flex">
+        <p className="p-2 font-bold">Yes</p>
+        <input
+            type="radio"
+            name="yes"
+            id="wheelsyes"
+            value="yes"
+            checked={carDataTable.wheelstyres.spareTyreSizeValue === "yes"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                wheelstyres: {
+                  ...prevState.wheelstyres,
+                  spareTyreSizeValue: e.target.value,
+                },
+              }))
+            }
+          />
+      </div>
+      <div className="flex">
+        <p className="p-2 font-bold">No</p>
+        <input
+            type="radio"
+            name="no"
+            id="wheelsno"
+            value="no"
+            checked={carDataTable.wheelstyres.spareTyreSizeValue === "no"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                wheelstyres: {
+                  ...prevState.wheelstyres,
+                  spareTyreSizeValue: e.target.value,
+                },
+              }))
+            }
+          />
+      </div>
+     
+    </div>
+    </div>
+    </div>
+    
+  </div>
+)}
 </div>
 {/* Wheels and Tyres end */}
-        {/* steering */}
-        <div className="p-4">
-  <button
-    onClick={() => setsteeringAccordian(!steeringAccordian)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Steering</span>
-    {steeringAccordian ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-  
-  <div
-    className={`grid overflow-hidden transition-all duration-500 ${
-      steeringAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-    }`}
-  >
-    <div className="overflow-hidden">
+      {/* steering */}
+      <div className="p-4">
+<button
+  onClick={() => setsteeringAccordian(!steeringAccordian)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Steering</span>
+  {steeringAccordian ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
+  )}
+</button>
+
+<div
+  className={`grid overflow-hidden transition-all duration-500 ${
+    steeringAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+  }`}
+>
+  <div className="overflow-hidden">
     <select
-        className="w-[40%] border-blue-300 border p-2 rounded"
-        // value={carDataTable.steering.steeringType || ""}
+      className="w-[40%] border-blue-300 border p-2 rounded"
+      // value={carDataTable.steering.steeringType || ""}
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          steering: {
+            ...prevState.steering,
+            steeringType: e.target.value,
+          },
+        }))
+      }
+    >
+      <option selected={!carDataTable?.steering?.steeringType?.length} disabled>Steering Type</option>
+      <option>Rack and Pinion Steering</option>
+      <option>Rack & Pinion with Electronic Motor</option>
+      <option>Recirculating Ball Steering</option>
+      <option>Hydraulic Power Steering (HPS)</option>
+      <option>Electric Power Steering (EPS)</option>
+      <option>Rack & Pinion with Hydraulic Pump</option>
+      <option>Electric Hydraulic Power Steering (EHPS)</option>
+      <option>Four-Wheel Steering</option>
+    </select>
+
+    <select
+      className="w-[40%] border-blue-300 border p-2 rounded ml-20"
+      // value={carDataTable.steering.powerAssisted || ""}
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          steering: {
+            ...prevState.steering,
+            powerAssisted: e.target.value,
+          },
+        }))
+      }
+    >
+      <option selected={!carDataTable?.steering?.powerAssisted} disabled>Power Assisted</option>
+      <option>Hydraulic Power Steering (HPS)</option>
+      <option>Hydraulic Power Steering with Variable Flow Control</option>
+      <option>Electric Power Steering (EPS)</option>
+      <option>Electric Hydraulic Power Steering (EHPS)</option>
+      <option>No</option>
+    </select>
+
+    <br />
+    <br />
+
+    <div className="grid grid-cols-2 w-[40%] gap-4 items-center">
+      <p className="p-2 font-bold">Minimum turning radius:</p>
+      <input
+        type="number"
+        placeholder="Enter in English"
+        className="border p-2 w-[270px] col-span-1"
+        value={carDataTable.steering.minimumTurningRadius || ""} // Ensure it is empty if undefined
         onChange={(e) =>
           setCarDataTable((prevState) => ({
             ...prevState,
             steering: {
               ...prevState.steering,
-              steeringType: e.target.value,
+              minimumTurningRadius: Number(e.target.value), // Store as a number
             },
           }))
         }
-      >
-        <option selected={!carDataTable?.steering?.steeringType?.length} disabled>Steering Type</option>
-        <option>Rack and Pinion Steering</option>
-        <option>Recirculating Ball Steering</option>
-        <option>Hydraulic Power Steering (HPS)</option>
-        <option>Electric Power Steering (EPS)</option>
-        <option>Rack & Pinion with Hydraulic Pump</option>
-        <option>Electric Hydraulic Power Steering (EHPS)</option>
-        <option>Four-Wheel Steering</option>
-      </select>
-
-      <select
-        className="w-[40%] border-blue-300 border p-2 rounded ml-20"
-        // value={carDataTable.steering.powerAssisted || ""}
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            steering: {
-              ...prevState.steering,
-              powerAssisted: e.target.value,
-            },
-          }))
-        }
-      >
-        <option selected={!carDataTable?.steering?.powerAssisted} disabled>Power Assisted</option>
-        <option>Hydraulic Power Steering (HPS)</option>
-        <option>Electric Power Steering (EPS)</option>
-        <option>Electric Hydraulic Power Steering (EHPS)</option>
-      </select>
-
-      <br />
-      <br />
-
-      <div className="grid grid-cols-2 w-[40%] gap-4 items-center">
-        <p className="p-2 font-bold">Minimum turning radius:</p>
-        <input
-          type="number"
-          placeholder="Enter in English"
-          className="border p-2 w-[270px] col-span-1"
-          value={carDataTable.steering.minimumTurningRadius || ""} // Ensure it is empty if undefined
-          onChange={(e) =>
-            setCarDataTable((prevState) => ({
-              ...prevState,
-              steering: {
-                ...prevState.steering,
-                minimumTurningRadius: Number(e.target.value), // Store as a number
-              },
-            }))
-          }
-        />
-      </div>
+      />
     </div>
   </div>
+</div>
 </div>
 
 {/* transmission start  */}
 <div className="p-4">
-  <button
-    onClick={() => setTransmissionTable(!transmissionTable)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Transmission</span>
-    {transmissionTable ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-  
-  <div
-    className={`grid  overflow-hidden transition-all duration-500 ${
-      transmissionTable ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-    }`}
-  >
-    <div className="overflow-hidden ">
+<button
+  onClick={() => setTransmissionTable(!transmissionTable)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Transmission</span>
+  {transmissionTable ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
+  )}
+</button>
+
+<div
+  className={`grid  overflow-hidden transition-all duration-500 ${
+    transmissionTable ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+  }`}
+>
+  <div className="overflow-hidden ">
+
+  <select
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          transmission: {
+            ...prevState.transmission,
+            id: Number(e.target.value),
+          },
+        }))
+      }
+      className="w-[40%] border-blue-300 border p-2 rounded ml-20"
+    >
+      <option  disabled selected={!carDataTable?.transmission?.id}>
+        Transmission Types
+      </option>
+      <option value="1">Manual</option>
+      <option value="2">Automatic</option>
+      <option value="3">CVT</option>
+      <option value="6">Automatic(CVT)</option>
+      <option value="7">Manual(CVT)</option>
+      <option value="4">Automatic(AGS)</option>
+      <option value="5">Manual(AGS)</option>
+    </select>
 
     <select
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            transmission: {
-              ...prevState.transmission,
-              id: Number(e.target.value),
-            },
-          }))
-        }
-        className="w-[40%] border-blue-300 border p-2 rounded ml-20"
-      >
-        <option  disabled selected={!carDataTable?.transmission?.id}>
-          Transmission Types
-        </option>
-        <option value="1">Manual</option>
-        <option value="2">Automatic</option>
-        <option value="3">CVT</option>
-        <option value="6">Automatic(CVT)</option>
-        <option value="7">Manual(CVT)</option>
-        <option value="4">Automatic(AGS)</option>
-        <option value="5">Manual(AGS)</option>
-      </select>
-
-      <select
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            gearbox: {
-              ...prevState.gearbox,
-              id: Number(e.target.value) || 0,
-            },
-          }))
-        }
-        className="w-[40%] border-blue-300 border p-2 rounded ml-20"
-      >
-        <option  disabled selected={!carDataTable?.gearbox?.id}>
-          Gearbox
-        </option>
-        <option value="7">1-Speed</option>
-        <option value="8">2-Speed</option>
-        <option value="9">3-Speed</option>
-        <option value="3">4-Speed</option>
-        <option value="1">5-Speed</option>
-        <option value="2">6-Speed</option>
-        <option value="6">7-Speed</option>
-        <option value="4">8-Speed</option>
-      </select>
-    </div>
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          gearbox: {
+            ...prevState.gearbox,
+            id: Number(e.target.value) || 0,
+          },
+        }))
+      }
+      className="w-[40%] border-blue-300 border p-2 rounded ml-20"
+    >
+      <option  disabled selected={!carDataTable?.gearbox?.id}>
+        Gearbox
+      </option>
+      <option value="7">1-Speed</option>
+      <option value="8">2-Speed</option>
+      <option value="9">3-Speed</option>
+      <option value="3">4-Speed</option>
+      <option value="1">5-Speed</option>
+      <option value="2">6-Speed</option>
+      <option value="6">7-Speed</option>
+      <option value="4">8-Speed</option>
+      <option value="5">0-Speed</option>
+    </select>
   </div>
+</div>
 </div>
 {/* transmission  end */}
-        {/* suspension and brakes */}
-        <div className="p-4">
-  <button
-    onClick={() => setsuspensionAccordian(!suspensionAccordian)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Suspension & Brakes</span>
-    {suspensionAccordian ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-  
-  <div
-    className={`grid overflow-hidden transition-all duration-500 ${
-      suspensionAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-    }`}
-  >
-    <div className="grid grid-cols-2 overflow-hidden">
-    <select
-        className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
-        // value={carDataTable.engine.engineType || ""}
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            suspensionBrakes: {
-              ...prevState.suspensionBrakes,
-              suspensionType: e.target.value,
-            },
-          }))
-        }
-      >
-        <option disabled selected={!carDataTable?.suspensionBrakes?.suspensionType?.length}>Suspensions Type</option>
-        <option>McPherson Strut Coil Springs:McPherson Strut Coil Springs</option>
-        <option>McPherson Strut Coil Springs:Torsion Beam with Coil Springs</option>
-        <option>McPherson Strut Coil Springs:Tube Shocks coil spring</option>
-        <option>McPherson Strut Coil Springs:Multi-Link Wishbone</option>
-        <option>McPherson Strut Coil Springs:Double Wishbone</option>
-        <option>McPherson Strut Coil Springs:Tube Shocks with Leaf Springs</option>
-        <option>McPherson Strut Coil Springs:Trailing Arm</option>
-        <option>Torsion Beam with Coil Springs:Torsion Beam with Coil Springs</option>
-        <option>Torsion Beam with Coil Springs:McPherson Strut Coil Springs</option>
-        <option>Torsion Beam with Coil Springs:Tube Shocks coil spring</option>
-        <option>Torsion Beam with Coil Springs:Multi-Link Wishbone</option>
-        <option>Torsion Beam with Coil Springs:Double Wishbone</option>
-        <option>Torsion Beam with Coil Springs:Tube Shocks with Leaf Springs</option>
-        <option>Torsion Beam with Coil Springs:Trailing Arm</option>
-        <option>Tube Shocks coil spring:Tube Shocks coil spring</option>
-        <option>Tube Shocks coil spring:Torsion Beam with Coil Springs</option>
-        <option>Tube Shocks coil spring:McPherson Strut Coil Springs</option>
-        <option>Tube Shocks coil spring:Multi-Link Wishbone</option>
-        <option>Tube Shocks coil spring:Double Wishbone</option>
-        <option>Tube Shocks coil spring:Tube Shocks with Leaf Springs</option>
-        <option>Tube Shocks coil spring:Trailing Arm</option>
-        <option>Tube Shocks coil spring:Trailing Arm</option>
-        <option>Multi-Link Wishbone:Multi-Link Wishbone</option>
-        <option>Multi-Link Wishbone:McPherson Strut Coil Springs</option>
-        <option>Multi-Link Wishbone:Torsion Beam with Coil Springs</option>
-        <option>Multi-Link Wishbone:Tube Shocks with Leaf Springs</option>
-        <option>Multi-Link Wishbone:Double Wishbone</option>
-        <option>Multi-Link Wishbone:Trailing Arm</option>
-        <option>Double Wishbone:Double Wishbone</option>
-        <option>Double Wishbone:McPherson Strut Coil Springs</option>
-        <option>Double Wishbone:Tube Shocks coil spring</option>
-        <option>Double Wishbone:Torsion Beam with Coil Springs</option>
-        <option>Double Wishbone:Tube Shocks with Leaf Springs</option>
-        <option>Double Wishbone:Trailing Arm</option>
-        <option>Tube Shocks with Leaf Springs:Tube Shocks with Leaf Springs</option>
-        <option>Tube Shocks with Leaf Springs:McPherson Strut Coil Springs</option>
-        <option>Tube Shocks with Leaf Springs:Torsion Beam with Coil Springs</option>
-        <option>Tube Shocks with Leaf Springs:Tube Shocks coil spring</option>
-        <option>Tube Shocks with Leaf Springs:Double Wishbone</option>
-        <option>Tube Shocks with Leaf Springs:Trailing Arm</option>
-        <option>Trailing Arm:McPherson Strut Coil Springs</option>
-        <option>Trailing Arm:Torsion Beam with Coil Springs</option>
-        <option>Trailing Arm:Tube Shocks coil spring</option>
-        <option>Trailing Arm:Multi-Link Wishbone</option>
-        <option>Trailing Arm:Double Wishbone</option>
-        <option>Trailing Arm:Tube Shocks with Leaf Springs</option>
-        <option>Air:Air</option>
-      </select>
-    <select
-        className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
-        // value={carDataTable.engine.engineType || ""}
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            suspensionBrakes: {
-              ...prevState.suspensionBrakes,
-              brakeType: e.target.value,
-            },
-          }))
-        }
-      >
-        <option disabled selected={!carDataTable?.suspensionBrakes?.brakeType?.length}>Brakes Type</option>
-        <option>Solid Disc:Solid Disc</option>
-        <option>Solid Disc:Drum</option>
-        <option>Solid Disc:Ventilated Disc</option>
-        <option>Ventilated Disc:Ventilated Disc</option>
-        <option>Ventilated Disc:Solid Disc</option>
-        <option>Ventilated Disc:Drum</option>
-        <option>Drum:Drum</option>
-        <option>Drum:Ventilated Disc</option>
-        <option>Drum:Solid Disc</option>
-      </select>
-      {/* <div>
-        <div>
-          <p className="p-2 font-bold">Suspension:</p>
-        </div>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="suspension"
-              id="frontSuspension"
-              value="Front Suspension"
-              checked={carDataTable.suspensionBrakes.suspensionType === "Front Suspension"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  suspensionBrakes: {
-                    ...prevState.suspensionBrakes,
-                    suspensionType: e.target.value,
-                  },
-                }))
-              }
-            />
-            <span> Front Suspension</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="suspension"
-              id="backSuspension"
-              value="Back Suspension"
-              checked={carDataTable.suspensionBrakes.suspensionType === "Back Suspension"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  suspensionBrakes: {
-                    ...prevState.suspensionBrakes,
-                    suspensionType: e.target.value,
-                  },
-                }))
-              }
-            />
-            <span> Back Suspension</span>
-          </div>
-        </div>
-      </div> */}
+      {/* suspension and brakes */}
+      <div className="p-4">
+<button
+  onClick={() => setsuspensionAccordian(!suspensionAccordian)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Suspension & Brakes</span>
+  {suspensionAccordian ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
+  )}
+</button>
 
-      {/* <div>
+<div
+  className={`grid overflow-hidden transition-all duration-500 ${
+    suspensionAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+  }`}
+>
+  <div className="grid grid-cols-2 overflow-hidden">
+  <select
+      className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
+      // value={carDataTable.engine.engineType || ""}
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          suspensionBrakes: {
+            ...prevState.suspensionBrakes,
+            suspensionType: e.target.value,
+          },
+        }))
+      }
+    >
+      <option disabled selected={!carDataTable?.suspensionBrakes?.suspensionType?.length}>Suspensions Type</option>
+      <option>McPherson Strut Coil Springs:McPherson Strut Coil Springs</option>
+      <option>McPherson Strut Coil Springs:Torsion Beam with Coil Springs</option>
+      <option>McPherson Strut Coil Springs:Tube Shocks coil spring</option>
+      <option>McPherson Strut Coil Springs:Multi-Link Wishbone</option>
+      <option>McPherson Strut Coil Springs:Double Wishbone</option>
+      <option>McPherson Strut Coil Springs:Tube Shocks with Leaf Springs</option>
+      <option>McPherson Strut Coil Springs:Trailing Arm</option>
+      <option>Torsion Beam with Coil Springs:Torsion Beam with Coil Springs</option>
+      <option>Torsion Beam with Coil Springs:McPherson Strut Coil Springs</option>
+      <option>Torsion Beam with Coil Springs:Tube Shocks coil spring</option>
+      <option>Torsion Beam with Coil Springs:Multi-Link Wishbone</option>
+      <option>Torsion Beam with Coil Springs:Double Wishbone</option>
+      <option>Torsion Beam with Coil Springs:Tube Shocks with Leaf Springs</option>
+      <option>Torsion Beam with Coil Springs:Trailing Arm</option>
+      <option>Tube Shocks coil spring:Tube Shocks coil spring</option>
+      <option>Tube Shocks coil spring:Torsion Beam with Coil Springs</option>
+      <option>Tube Shocks coil spring:McPherson Strut Coil Springs</option>
+      <option>Tube Shocks coil spring:Multi-Link Wishbone</option>
+      <option>Tube Shocks coil spring:Double Wishbone</option>
+      <option>Tube Shocks coil spring:Tube Shocks with Leaf Springs</option>
+      <option>Tube Shocks coil spring:Trailing Arm</option>
+      <option>Tube Shocks Coil Springs:Tube Shocks with Leaf Springs</option>
+      <option>Multi-Link Wishbone:Multi-Link Wishbone</option>
+      <option>Multi-Link Wishbone:McPherson Strut Coil Springs</option>
+      <option>Multi-Link Wishbone:Torsion Beam with Coil Springs</option>
+      <option>Multi-Link Wishbone:Tube Shocks with Leaf Springs</option>
+      <option>Multi-Link Wishbone:Double Wishbone</option>
+      <option>Multi-Link Wishbone:Trailing Arm</option>
+      <option>Double Wishbone:Double Wishbone</option>
+      <option>Double-Wishbone:Multi-Link Wishbone</option>
+      <option>Double Wishbone:McPherson Strut Coil Springs</option>
+      <option>Double Wishbone:Tube Shocks coil spring</option>
+      <option>Double Wishbone:Torsion Beam with Coil Springs</option>
+      <option>Double Wishbone:Tube Shocks with Leaf Springs</option>
+      <option>Double Wishbone:Trailing Arm</option>
+      <option>Tube Shocks with Leaf Springs:Tube Shocks with Leaf Springs</option>
+      <option>Tube Shocks with Leaf Springs:McPherson Strut Coil Springs</option>
+      <option>Tube Shocks with Leaf Springs:Torsion Beam with Coil Springs</option>
+      <option>Tube Shocks with Leaf Springs:Tube Shocks coil spring</option>
+      <option>Tube Shocks with Leaf Springs:Double Wishbone</option>
+      <option>Tube Shocks with Leaf Springs:Trailing Arm</option>
+      <option>Trailing Arm:McPherson Strut Coil Springs</option>
+      <option>Trailing Arm:Torsion Beam with Coil Springs</option>
+      <option>Trailing Arm:Tube Shocks coil spring</option>
+      <option>Trailing Arm:Multi-Link Wishbone</option>
+      <option>Trailing Arm:Double Wishbone</option>
+      <option>Trailing Arm:Tube Shocks with Leaf Springs</option>
+      <option>Air:Air</option>
+    </select>
+  <select
+      className="w-[40%] ml-16 border-blue-300 border p-2 rounded"
+      // value={carDataTable.engine.engineType || ""}
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          suspensionBrakes: {
+            ...prevState.suspensionBrakes,
+            brakeType: e.target.value,
+          },
+        }))
+      }
+    >
+      <option disabled selected={!carDataTable?.suspensionBrakes?.brakeType?.length}>Brakes Type</option>
+      <option>Solid Disc:Solid Disc</option>
+      <option>Solid Disc:Drum</option>
+      <option>Solid Disc:Ventilated Disc</option>
+      <option>Ventilated Disc:Ventilated Disc</option>
+      <option>Ventilated Disc:Solid Disc</option>
+      <option>Ventilated Disc:Drum</option>
+      <option>Drum:Drum</option>
+      <option>Drum:Ventilated Disc</option>
+      <option>Drum:Solid Disc</option>
+    </select>
+    {/* <div>
+      <div>
+        <p className="p-2 font-bold">Suspension:</p>
+      </div>
+      <div className="flex gap-4 p-2">
         <div>
-          <p className="p-2 font-bold">Brakes:</p>
+          <input
+            type="radio"
+            name="suspension"
+            id="frontSuspension"
+            value="Front Suspension"
+            checked={carDataTable.suspensionBrakes.suspensionType === "Front Suspension"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                suspensionBrakes: {
+                  ...prevState.suspensionBrakes,
+                  suspensionType: e.target.value,
+                },
+              }))
+            }
+          />
+          <span> Front Suspension</span>
         </div>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="brakes"
-              id="frontBrakes"
-              value="Front Brakes"
-              checked={carDataTable.suspensionBrakes.brakeType === "Front Brakes"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  suspensionBrakes: {
-                    ...prevState.suspensionBrakes,
-                    brakeType: e.target.value,
-                  },
-                }))
-              }
-            />
-            <span> Front Brakes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="brakes"
-              id="backBrakes"
-              value="Back Brakes"
-              checked={carDataTable.suspensionBrakes.brakeType === "Back Brakes"}
-              onChange={(e) =>
-                setCarDataTable((prevState) => ({
-                  ...prevState,
-                  suspensionBrakes: {
-                    ...prevState.suspensionBrakes,
-                    brakeType: e.target.value,
-                  },
-                }))
-              }
-            />
-            <span> Back Brakes</span>
-          </div>
+        <div>
+          <input
+            type="radio"
+            name="suspension"
+            id="backSuspension"
+            value="Back Suspension"
+            checked={carDataTable.suspensionBrakes.suspensionType === "Back Suspension"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                suspensionBrakes: {
+                  ...prevState.suspensionBrakes,
+                  suspensionType: e.target.value,
+                },
+              }))
+            }
+          />
+          <span> Back Suspension</span>
         </div>
-      </div> */}
-    </div>
+      </div>
+    </div> */}
+
+    {/* <div>
+      <div>
+        <p className="p-2 font-bold">Brakes:</p>
+      </div>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="brakes"
+            id="frontBrakes"
+            value="Front Brakes"
+            checked={carDataTable.suspensionBrakes.brakeType === "Front Brakes"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                suspensionBrakes: {
+                  ...prevState.suspensionBrakes,
+                  brakeType: e.target.value,
+                },
+              }))
+            }
+          />
+          <span> Front Brakes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="brakes"
+            id="backBrakes"
+            value="Back Brakes"
+            checked={carDataTable.suspensionBrakes.brakeType === "Back Brakes"}
+            onChange={(e) =>
+              setCarDataTable((prevState) => ({
+                ...prevState,
+                suspensionBrakes: {
+                  ...prevState.suspensionBrakes,
+                  brakeType: e.target.value,
+                },
+              }))
+            }
+          />
+          <span> Back Brakes</span>
+        </div>
+      </div>
+    </div> */}
   </div>
 </div>
+</div>
 
 
-        {/* fuel economy */}
-        <div className="p-4">
-  <button
-    onClick={() => setfuelEconomyAccordian(!fuelEconomyAccordian)}
-    className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-  >
-    <span>Fuel Economy</span>
-    {fuelEconomyAccordian ? (
-      <MdExpandLess className="font-bold text-lg" />
-    ) : (
-      <MdExpandMore className="text-lg" />
-    )}
-  </button>
-
-  {fuelEconomyAccordian && (
-    <div className="grid gap-4">
-      <select
-        onChange={(e) =>
-          setCarDataTable((prevState) => ({
-            ...prevState,
-            fuelType: {
-              ...prevState.fuelType,
-              id: Number(e.target.value) || 0,
-            },
-          }))
-        }
-        className="m-auto w-[45%] border-blue-300 border p-2 rounded"
-      >
-        <option  disabled selected={!carDataTable?.fuelType?.id}>
-          Fuel Types
-        </option>
-        <option value="1">Petrol</option>
-        <option value="2">Diesel</option>
-        <option value="3">Electric</option>
-        <option value="4">CNG</option>
-        <option value="5">LPG</option>
-        <option value="6">Hybrid</option>
-      </select>
-
-      <div className="flex flex-wrap gap-2">
-        {[
-          { name: "fuelTankCapacity", label: "Fuel tank capacity (L)", type: "number" },
-          { name: "mileageCityKml", label: "Mileage city (km/l)", type: "number" },
-          { name: "mileageHighwayKml", label: "Mileage highway (km/l)", type: "number" },
-        ].map((fuel, index) => (
-          <div key={index} className="grid items-center w-[30%]">
-            <div>
-              <p className="p-2 font-bold">{fuel.label}:</p>
-              <input
-                name={fuel.name}
-                value={carDataTable.fuelEconomy[fuel.name]}
-                onChange={(e) =>
-                  setCarDataTable((prevState) => ({
-                    ...prevState,
-                    fuelEconomy: {
-                      ...prevState.fuelEconomy,
-                      [fuel.name]: Number(e.target.value) || 0,
-                    },
-                  }))
-                }
-                placeholder="Enter in English"
-                className="border p-2 w-[100%] col-span-2"
-                type="number"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      {/* fuel economy */}
+      <div className="p-4">
+<button
+  onClick={() => setfuelEconomyAccordian(!fuelEconomyAccordian)}
+  className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+>
+  <span>Fuel Economy</span>
+  {fuelEconomyAccordian ? (
+    <MdExpandLess className="font-bold text-lg" />
+  ) : (
+    <MdExpandMore className="text-lg" />
   )}
+</button>
+
+{fuelEconomyAccordian && (
+  <div className="grid gap-4">
+    <select
+      onChange={(e) =>
+        setCarDataTable((prevState) => ({
+          ...prevState,
+          fuelType: {
+            ...prevState.fuelType,
+            id: Number(e.target.value) || 0,
+          },
+        }))
+      }
+      className="m-auto w-[45%] border-blue-300 border p-2 rounded"
+    >
+      <option  disabled selected={!carDataTable?.fuelType?.id}>
+        Fuel Types
+      </option>
+      <option value="1">Petrol</option>
+      <option value="2">Diesel</option>
+      <option value="3">Electric</option>
+      <option value="4">CNG</option>
+      <option value="5">LPG</option>
+      <option value="6">Hybrid</option>
+    </select>
+
+    <div className="flex flex-wrap gap-2">
+      {[
+        { name: "fuelTankCapacity", label: "Fuel tank capacity (L)", type: "number" },
+        { name: "mileageCityKml", label: "Mileage city (km/l)", type: "number" },
+        { name: "mileageHighwayKml", label: "Mileage highway (km/l)", type: "number" },
+      ].map((fuel, index) => (
+        <div key={index} className="grid items-center w-[30%]">
+          <div>
+            <p className="p-2 font-bold">{fuel.label}:</p>
+            <input
+              name={fuel.name}
+              value={carDataTable.fuelEconomy[fuel.name]}
+              onChange={(e) =>
+                setCarDataTable((prevState) => ({
+                  ...prevState,
+                  fuelEconomy: {
+                    ...prevState.fuelEconomy,
+                    [fuel.name]: Number(e.target.value) || 0,
+                  },
+                }))
+              }
+              placeholder="Enter in English"
+              className="border p-2 w-[100%] col-span-2"
+              type="number"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 </div>
 
 
 
-        {/* safety */}
-        <div className="p-4">
-      <button
-        onClick={() => setSafetyAccordian(!safetyAccordian)}
-        className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-      >
-        <span>Safety</span>
-        {safetyAccordian ? (
-          <MdExpandLess className="font-bold text-lg" />
-        ) : (
-          <MdExpandMore className="text-lg" />
-        )}
-      </button>
-      <div
-        className={`grid overflow-hidden transition-all duration-500 ${
-          safetyAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
-      >
-        <div className="grid grid-cols-3 gap-2 overflow-hidden">
-          {/* Number of airbags */}
+      {/* safety */}
+      <div className="p-4">
+    <button
+      onClick={() => setSafetyAccordian(!safetyAccordian)}
+      className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+    >
+      <span>Safety</span>
+      {safetyAccordian ? (
+        <MdExpandLess className="font-bold text-lg" />
+      ) : (
+        <MdExpandMore className="text-lg" />
+      )}
+    </button>
+    <div
+      className={`grid overflow-hidden transition-all duration-500 ${
+        safetyAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+      }`}
+    >
+      <div className="grid grid-cols-3 gap-2 overflow-hidden">
+        {/* Number of airbags */}
+        <div>
+          <p className="p-2 font-bold">Number of airbags:</p>
+          <div className="flex gap-4 p-2">
+            {[0,1,2,3,4,5,6,7,8,9,10,11,12].map((num) => (
+              <div key={num}>
+                <input
+                  type="radio"
+                  value={num.toString()}
+                  name="airbags"
+                  id={`airbags-${num}`}
+                  // checked={carDataTable.suspensionBrakes.suspensionType === "Front Suspension"}
+                  checked={carDataTable.carVersionFeatures[0].value === num.toString()}
+                  onChange={() => handleFeatureChange(1, num.toString())}
+                />
+                <span> {num}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Number of seatbelts */}
+        <div>
+          <p className="p-2 font-bold">Number of seatbelts:</p>
+          <div className="flex gap-4 p-2">
+            {[0,2, 4, 5, 7].map((num) => (
+              <div key={num}>
+                <input
+                  type="radio"
+                  value={num.toString()}
+                  name="seatbelts"
+                  id={`seatbelts-${num}`}
+                  checked={carDataTable.carVersionFeatures[1].value === num.toString()}
+                  onChange={() => handleFeatureChange(2, num.toString())}
+                />
+                <span> {num}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Immobilizer */}
+        <div>
+          <p className="p-2 font-bold">Immobilizer:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="immobilizer"
+                  id={`immobilizer-${option}`}
+                  checked={carDataTable.carVersionFeatures[2].value === option}
+                  onChange={() => handleFeatureChange(3, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ABS */}
+        <div>
+          <p className="p-2 font-bold">ABS:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="abs"
+                  id={`abs-${option}`}
+                  checked={carDataTable.carVersionFeatures[3].value === option}
+                  onChange={() => handleFeatureChange(4, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Downhill Assist Control */}
+        <div>
+          <p className="p-2 font-bold">Downhill Assist Control:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="downhill"
+                  id={`downhill-${option}`}
+                  checked={carDataTable.carVersionFeatures[4].value === option}
+                  onChange={() => handleFeatureChange(5, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hill Start Assist Control */}
+        <div>
+          <p className="p-2 font-bold">Hill Start Assist Control:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="hill"
+                  id={`hill-${option}`}
+                  checked={carDataTable.carVersionFeatures[5].value === option}
+                  onChange={() => handleFeatureChange(6, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Traction Control */}
+        <div>
+          <p className="p-2 font-bold">Traction Control:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="traction_control"
+                  id={`traction_control-${option}`}
+                  checked={carDataTable.carVersionFeatures[6].value === option}
+                  onChange={() => handleFeatureChange(7, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Vehicle Stability Control */}
+        <div>
+          <p className="p-2 font-bold">Vehicle Stability Control:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="stability"
+                  id={`stability-${option}`}
+                  checked={carDataTable.carVersionFeatures[7].value === option}
+                  onChange={() => handleFeatureChange(8, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Child Lock */}
+        <div>
+          <p className="p-2 font-bold">Child Lock:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="child_lock"
+                  id={`child_lock-${option}`}
+                  checked={carDataTable.carVersionFeatures[8].value === option}
+                  onChange={() => handleFeatureChange(9, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="p-2 font-bold">ISOFIX Child Seat Anchor:</p>
+          <div className="flex gap-4 p-2">
+            {['yes', 'no'].map((option) => (
+              <div key={option}>
+                <input
+                  type="radio"
+                  value={option}
+                  name="ISOFIX _child_seat_anchor"
+                  id={`ISOFIX _child_seat_anchor-${option}`}
+                  checked={carDataTable.carVersionFeatures[9].value === option}
+                  onChange={() => handleFeatureChange(10, option)}
+                />
+                <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+      {/* exterior */}
+      <div className="p-4">
+    <button
+      onClick={() => setExteriorAccordian(!exteriorAccordian)}
+      className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+    >
+      <span>Exterior</span>
+      {exteriorAccordian ? (
+        <MdExpandLess className="font-bold text-lg" />
+      ) : (
+        <MdExpandMore className="text-lg" />
+      )}
+    </button>
+    <div
+      className={`grid overflow-hidden transition-all duration-500 ${
+        exteriorAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+      }`}
+    >
+      <div className="overflow-hidden">
+        <div className="grid gap-4">
+          {/* <p className=""></p> */}
+          {/* <input
+            placeholder="Enter in English"
+            className="border p-2 w-3/4 col-span-1"
+            value={carDataTable.carVersionFeatures[12].value}
+            onChange={(e) => handleFeatureChange(13, e.target.value)}
+          /> */}
+           <select /* value={carDataTable.carVersionFeatures[32].value} */ onChange={(e) => handleFeatureChange(13, e.target.value)} id="33" className="m-auto w-[45%] border-blue-300 border p-2 rounded">
+              <option disabled  selected={!carDataTable?.carVersionFeatures[12]?.value?.length}>Colored outside door handles</option>
+              <option value={"Body-Colored"}>Body-Colored</option>
+              <option value={"Body-Colored with Chrome Lining"}>Body-Colored with Chrome Lining</option>
+              <option value={"Chrome"}>Chrome</option>
+              <option value={"Steel gray"}>Steel gray</option>
+              <option value={"Silver"}>Silver</option>
+              <option value={"Partial Chrome"}>Partial Chrome</option>
+              <option value={"Black"}>Black</option>
+              <option value={"Satin Finish"}>Satin Finish</option>
+              <option value={"Gloss Finish"}>Gloss Finish</option>
+              <option value={"Textured/Plastic"}>Textured/Plastic</option>
+            </select>
+          {/* <input
+            placeholder="Enter in Arabic"
+            className="border hidden p-2 w-3/4 col-span-1"
+          /> */}
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
           <div>
-            <p className="p-2 font-bold">Number of airbags:</p>
+            <p className="p-2 font-bold">Alloy wheels:</p>
             <div className="flex gap-4 p-2">
-              {[0,1,2,3,4,5,6,7,8,10,12].map((num) => (
-                <div key={num}>
-                  <input
-                    type="radio"
-                    value={num.toString()}
-                    name="airbags"
-                    id={`airbags-${num}`}
-                    // checked={carDataTable.suspensionBrakes.suspensionType === "Front Suspension"}
-                    checked={carDataTable.carVersionFeatures[0].value === num.toString()}
-                    onChange={() => handleFeatureChange(1, num.toString())}
-                  />
-                  <span> {num}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="alloy_wheels"
+                  id="alloy_yes"
+                  checked={carDataTable.carVersionFeatures[10].value === "yes"}
+                  onChange={() => handleFeatureChange(11, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="alloy_wheels"
+                  id="alloy_no"
+                  checked={carDataTable.carVersionFeatures[10].value === "no"}
+                  onChange={() => handleFeatureChange(11, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Number of seatbelts */}
           <div>
-            <p className="p-2 font-bold">Number of seatbelts:</p>
+            <p className="p-2 font-bold">Front Fog lights:</p>
             <div className="flex gap-4 p-2">
-              {[0,2, 4, 5, 7].map((num) => (
-                <div key={num}>
-                  <input
-                    type="radio"
-                    value={num.toString()}
-                    name="seatbelts"
-                    id={`seatbelts-${num}`}
-                    checked={carDataTable.carVersionFeatures[1].value === num.toString()}
-                    onChange={() => handleFeatureChange(2, num.toString())}
-                  />
-                  <span> {num}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="frontfog"
+                  id="frontfog_yes"
+                  checked={carDataTable.carVersionFeatures[11].value === "yes"}
+                  onChange={() => handleFeatureChange(12, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="frontfog"
+                  id="frontfog_no"
+                  checked={carDataTable.carVersionFeatures[11].value === "no"}
+                  onChange={() => handleFeatureChange(12, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Immobilizer */}
           <div>
-            <p className="p-2 font-bold">Immobilizer:</p>
+            <p className="p-2 font-bold">Side mirrors with indicators:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="immobilizer"
-                    id={`immobilizer-${option}`}
-                    checked={carDataTable.carVersionFeatures[2].value === option}
-                    onChange={() => handleFeatureChange(3, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="sdwi"
+                  id="sdwi_yes"
+                  checked={carDataTable.carVersionFeatures[13].value === "yes"}
+                  onChange={() => handleFeatureChange(14, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="sdwi"
+                  id="sdwi_no"
+                  checked={carDataTable.carVersionFeatures[13].value === "no"}
+                  onChange={() => handleFeatureChange(14, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* ABS */}
           <div>
-            <p className="p-2 font-bold">ABS:</p>
+            <p className="p-2 font-bold">Sun roof:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="abs"
-                    id={`abs-${option}`}
-                    checked={carDataTable.carVersionFeatures[3].value === option}
-                    onChange={() => handleFeatureChange(4, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="sun_roof"
+                  id="sunroof_yes"
+                  checked={carDataTable.carVersionFeatures[14].value === "yes"}
+                  onChange={() => handleFeatureChange(15, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="sun_roof"
+                  id="sunroof_no"
+                  checked={carDataTable.carVersionFeatures[14].value === "no"}
+                  onChange={() => handleFeatureChange(15, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Downhill Assist Control */}
           <div>
-            <p className="p-2 font-bold">Downhill Assist Control:</p>
+            <p className="p-2 font-bold">Moon roof:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="downhill"
-                    id={`downhill-${option}`}
-                    checked={carDataTable.carVersionFeatures[4].value === option}
-                    onChange={() => handleFeatureChange(5, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="moon_roof"
+                  id="moonroof_yes"
+                  checked={carDataTable.carVersionFeatures[15].value === "yes"}
+                  onChange={() => handleFeatureChange(16, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="moon_roof"
+                  id="moonroof_no"
+                  checked={carDataTable.carVersionFeatures[15].value === "no"}
+                  onChange={() => handleFeatureChange(16, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Hill Start Assist Control */}
           <div>
-            <p className="p-2 font-bold">Hill Start Assist Control:</p>
+            <p className="p-2 font-bold">Adjustable headlights:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="hill"
-                    id={`hill-${option}`}
-                    checked={carDataTable.carVersionFeatures[5].value === option}
-                    onChange={() => handleFeatureChange(6, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="headlights"
+                  id="headlights_yes"
+                  checked={carDataTable.carVersionFeatures[16].value === "yes"}
+                  onChange={() => handleFeatureChange(17, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="headlights"
+                  id="headlights_no"
+                  checked={carDataTable.carVersionFeatures[16].value === "no"}
+                  onChange={() => handleFeatureChange(17, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Traction Control */}
           <div>
-            <p className="p-2 font-bold">Traction Control:</p>
+            <p className="p-2 font-bold">DRLs:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="traction_control"
-                    id={`traction_control-${option}`}
-                    checked={carDataTable.carVersionFeatures[6].value === option}
-                    onChange={() => handleFeatureChange(7, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="drls"
+                  id="drls_yes"
+                  checked={carDataTable.carVersionFeatures[17].value === "yes"}
+                  onChange={() => handleFeatureChange(18, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="drls"
+                  id="drls_no"
+                  checked={carDataTable.carVersionFeatures[17].value === "no"}
+                  onChange={() => handleFeatureChange(18, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
 
-          {/* Vehicle Stability Control */}
           <div>
-            <p className="p-2 font-bold">Vehicle Stability Control:</p>
+            <p className="p-2 font-bold">Rear spoiler:</p>
             <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="stability"
-                    id={`stability-${option}`}
-                    checked={carDataTable.carVersionFeatures[7].value === option}
-                    onChange={() => handleFeatureChange(8, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
+              <div>
+                <input
+                  type="radio"
+                  name="rear_spoiler"
+                  id="rear_spoiler_yes"
+                  checked={carDataTable.carVersionFeatures[18].value === "yes"}
+                  onChange={() => handleFeatureChange(19, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="rear_spoiler"
+                  id="rear_spoiler_no"
+                  checked={carDataTable.carVersionFeatures[18].value === "no"}
+                  onChange={() => handleFeatureChange(19, "no")}
+                />
+                <span> No</span>
+              </div>
             </div>
           </div>
-
-          {/* Child Lock */}
-          <div>
-            <p className="p-2 font-bold">Child Lock:</p>
-            <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="child_lock"
-                    id={`child_lock-${option}`}
-                    checked={carDataTable.carVersionFeatures[8].value === option}
-                    onChange={() => handleFeatureChange(9, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="p-2 font-bold">ISOFIX Child Seat Anchor:</p>
-            <div className="flex gap-4 p-2">
-              {['yes', 'no'].map((option) => (
-                <div key={option}>
-                  <input
-                    type="radio"
-                    value={option}
-                    name="ISOFIX _child_seat_anchor"
-                    id={`ISOFIX _child_seat_anchor-${option}`}
-                    checked={carDataTable.carVersionFeatures[9].value === option}
-                    onChange={() => handleFeatureChange(10, option)}
-                  />
-                  <span> {option.charAt(0).toUpperCase() + option.slice(1)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
-        {/* exterior */}
-        <div className="p-4">
+  </div>
+      {/* instrumentation */}
+      <div>
+
+    <div className="p-4">
       <button
-        onClick={() => setExteriorAccordian(!exteriorAccordian)}
+        onClick={() => setInstrumentAccordian(!instrumentAccordian)}
         className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
       >
-        <span>Exterior</span>
-        {exteriorAccordian ? (
+        <span>Instrumentation</span>
+        {instrumentAccordian ? (
           <MdExpandLess className="font-bold text-lg" />
         ) : (
           <MdExpandMore className="text-lg" />
@@ -3516,239 +3782,244 @@ type="text"
       </button>
       <div
         className={`grid overflow-hidden transition-all duration-500 ${
-          exteriorAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          instrumentAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="grid grid-cols-2 overflow-hidden">
+          <div>
+            <p className="p-2 font-bold">Tachometer:</p>
+            <div className="flex gap-4 p-2">
+              <div>
+                <input
+                  type="radio"
+                  name="tachometer"
+                  id="tachometer_yes"
+                  checked={carDataTable.carVersionFeatures[19].value === "yes"}
+                  onChange={() => handleFeatureChange(20, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="tachometer"
+                  id="tachometer_no"
+                  checked={carDataTable.carVersionFeatures[19].value === "no"}
+                  onChange={() => handleFeatureChange(20, "no")}
+                />
+                <span> No</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p className="p-2 font-bold">Multi info:</p>
+            <div className="flex gap-4 p-2">
+              <div>
+                <input
+                  type="radio"
+                  name="multi_info"
+                  id="multi_info_yes"
+                  checked={carDataTable.carVersionFeatures[20].value === "yes"}
+                  onChange={() => handleFeatureChange(21, "yes")}
+                />
+                <span> Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="multi_info"
+                  id="multi_info_no"
+                  checked={carDataTable.carVersionFeatures[20].value === "no"}
+                  onChange={() => handleFeatureChange(21, "no")}
+                />
+                <span> No</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      {/* entertainment */}
+      <div>
+    <div className="p-4">
+      <button
+        onClick={() => setEntertainmentAccordian(!entertainmentAccordian)}
+        className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
+      >
+        <span>Entertainment</span>
+        {entertainmentAccordian ? (
+          <MdExpandLess className="font-bold text-lg" />
+        ) : (
+          <MdExpandMore className="text-lg" />
+        )}
+      </button>
+      <div
+        className={`grid overflow-hidden transition-all duration-500 ${
+          entertainmentAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
         <div className="overflow-hidden">
-          <div className="grid gap-4">
-            {/* <p className=""></p> */}
-            {/* <input
+          <div className="grid grid-cols-3 gap-4 items-center">
+            <p className="p-2 font-bold">Display Size in:</p>
+            <input
               placeholder="Enter in English"
               className="border p-2 w-3/4 col-span-1"
-              value={carDataTable.carVersionFeatures[12].value}
-              onChange={(e) => handleFeatureChange(13, e.target.value)}
-            /> */}
-             <select /* value={carDataTable.carVersionFeatures[32].value} */ onChange={(e) => handleFeatureChange(13, e.target.value)} id="33" className="m-auto w-[45%] border-blue-300 border p-2 rounded">
-                <option disabled  selected={!carDataTable?.carVersionFeatures[12]?.value?.length}>Colored outside door handles</option>
-                <option value={"Body-Colored"}>Body-Colored</option>
-                <option value={"Body-Colored with Chrome Lining"}>Body-Colored with Chrome Lining</option>
-                <option value={"Chrome"}>Chrome</option>
-                <option value={"Partial Chrome"}>Partial Chrome</option>
-                <option value={"Black"}>Black</option>
-                <option value={"Silver"}>Black</option>
-                <option value={"Satin Finish"}>Satin Finish</option>
-                <option value={"Gloss Finish"}>Gloss Finish</option>
-                <option value={"Textured/Plastic"}>Textured/Plastic</option>
-              </select>
-            {/* <input
+              value={carDataTable.carVersionFeatures[24].value}
+              onChange={(e) => handleFeatureChange(25, e.target.value)}
+            />
+            <input
               placeholder="Enter in Arabic"
               className="border hidden p-2 w-3/4 col-span-1"
-            /> */}
+              // onChange={(e) => handleFeatureChange(25, e.target.value)}
+            />
           </div>
-
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3">
             <div>
-              <p className="p-2 font-bold">Alloy wheels:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">CD player:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="alloy_wheels"
-                    id="alloy_yes"
-                    checked={carDataTable.carVersionFeatures[10].value === "yes"}
-                    onChange={() => handleFeatureChange(11, "yes")}
+                    name="cd_player"
+                    id="cd_yes"
+                    checked={carDataTable.carVersionFeatures[21].value === "yes"}
+                    onChange={() => handleFeatureChange(22, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="alloy_wheels"
-                    id="alloy_no"
-                    checked={carDataTable.carVersionFeatures[10].value === "no"}
-                    onChange={() => handleFeatureChange(11, "no")}
+                    name="cd_player"
+                    id="cd_no"
+                    checked={carDataTable.carVersionFeatures[21].value === "no"}
+                    onChange={() => handleFeatureChange(22, "no")}
                   />
                   <span> No</span>
                 </div>
               </div>
             </div>
-
             <div>
-              <p className="p-2 font-bold">Front Fog lights:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">DVD player:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="frontfog"
-                    id="frontfog_yes"
-                    checked={carDataTable.carVersionFeatures[11].value === "yes"}
-                    onChange={() => handleFeatureChange(12, "yes")}
+                    name="dvd_player"
+                    id="dvd_yes"
+                    checked={carDataTable.carVersionFeatures[22].value === "yes"}
+                    onChange={() => handleFeatureChange(23, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="frontfog"
-                    id="frontfog_no"
-                    checked={carDataTable.carVersionFeatures[11].value === "no"}
-                    onChange={() => handleFeatureChange(12, "no")}
+                    name="dvd_player"
+                    id="dvd_no"
+                    checked={carDataTable.carVersionFeatures[22].value === "no"}
+                    onChange={() => handleFeatureChange(23, "no")}
                   />
                   <span> No</span>
                 </div>
               </div>
             </div>
-
             <div>
-              <p className="p-2 font-bold">Side mirrors with indicators:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">USB and auxiliary cable:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="sdwi"
-                    id="sdwi_yes"
-                    checked={carDataTable.carVersionFeatures[13].value === "yes"}
-                    onChange={() => handleFeatureChange(14, "yes")}
+                    name="auxiliary_cable"
+                    id="aux_yes"
+                    checked={carDataTable.carVersionFeatures[23].value === "yes"}
+                    onChange={() => handleFeatureChange(24, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="sdwi"
-                    id="sdwi_no"
-                    checked={carDataTable.carVersionFeatures[13].value === "no"}
-                    onChange={() => handleFeatureChange(14, "no")}
+                    name="auxiliary_cable"
+                    id="aux_no"
+                    checked={carDataTable.carVersionFeatures[23].value === "no"}
+                    onChange={() => handleFeatureChange(24, "no")}
                   />
                   <span> No</span>
                 </div>
               </div>
             </div>
-
             <div>
-              <p className="p-2 font-bold">Sun roof:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">Front Speakers:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="sun_roof"
-                    id="sunroof_yes"
-                    checked={carDataTable.carVersionFeatures[14].value === "yes"}
-                    onChange={() => handleFeatureChange(15, "yes")}
+                    name="frontSpeakers"
+                    id="front_yes"
+                    checked={carDataTable.carVersionFeatures[25].value === "yes"}
+                    onChange={() => handleFeatureChange(26, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="sun_roof"
-                    id="sunroof_no"
-                    checked={carDataTable.carVersionFeatures[14].value === "no"}
-                    onChange={() => handleFeatureChange(15, "no")}
+                    name="frontSpeakers"
+                    id="front_no"
+                    checked={carDataTable.carVersionFeatures[25].value === "no"}
+                    onChange={() => handleFeatureChange(26, "no")}
                   />
                   <span> No</span>
                 </div>
               </div>
             </div>
-
             <div>
-              <p className="p-2 font-bold">Moon roof:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">Rear speakers:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="moon_roof"
-                    id="moonroof_yes"
-                    checked={carDataTable.carVersionFeatures[15].value === "yes"}
-                    onChange={() => handleFeatureChange(16, "yes")}
+                    name="rear_speakers"
+                    id="rear_yes"
+                    checked={carDataTable.carVersionFeatures[26].value === "yes"}
+                    onChange={() => handleFeatureChange(27, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="moon_roof"
-                    id="moonroof_no"
-                    checked={carDataTable.carVersionFeatures[15].value === "no"}
-                    onChange={() => handleFeatureChange(16, "no")}
+                    name="rear_speakers"
+                    id="rear_no"
+                    checked={carDataTable.carVersionFeatures[26].value === "no"}
+                    onChange={() => handleFeatureChange(27, "no")}
                   />
                   <span> No</span>
                 </div>
               </div>
             </div>
-
             <div>
-              <p className="p-2 font-bold">Adjustable headlights:</p>
-              <div className="flex gap-4 p-2">
+              <p className="p-2 font-bold">Rear seat entertainment:</p>
+              <div className="flex gap-2 p-2">
                 <div>
                   <input
                     type="radio"
-                    name="headlights"
-                    id="headlights_yes"
-                    checked={carDataTable.carVersionFeatures[16].value === "yes"}
-                    onChange={() => handleFeatureChange(17, "yes")}
+                    name="rear_seat_entertainment"
+                    id="rear_seat_yes"
+                    checked={carDataTable.carVersionFeatures[27].value === "yes"}
+                    onChange={() => handleFeatureChange(28, "yes")}
                   />
                   <span> Yes</span>
                 </div>
                 <div>
                   <input
                     type="radio"
-                    name="headlights"
-                    id="headlights_no"
-                    checked={carDataTable.carVersionFeatures[16].value === "no"}
-                    onChange={() => handleFeatureChange(17, "no")}
-                  />
-                  <span> No</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <p className="p-2 font-bold">DRLs:</p>
-              <div className="flex gap-4 p-2">
-                <div>
-                  <input
-                    type="radio"
-                    name="drls"
-                    id="drls_yes"
-                    checked={carDataTable.carVersionFeatures[17].value === "yes"}
-                    onChange={() => handleFeatureChange(18, "yes")}
-                  />
-                  <span> Yes</span>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="drls"
-                    id="drls_no"
-                    checked={carDataTable.carVersionFeatures[17].value === "no"}
-                    onChange={() => handleFeatureChange(18, "no")}
-                  />
-                  <span> No</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <p className="p-2 font-bold">Rear spoiler:</p>
-              <div className="flex gap-4 p-2">
-                <div>
-                  <input
-                    type="radio"
-                    name="rear_spoiler"
-                    id="rear_spoiler_yes"
-                    checked={carDataTable.carVersionFeatures[18].value === "yes"}
-                    onChange={() => handleFeatureChange(19, "yes")}
-                  />
-                  <span> Yes</span>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="rear_spoiler"
-                    id="rear_spoiler_no"
-                    checked={carDataTable.carVersionFeatures[18].value === "no"}
-                    onChange={() => handleFeatureChange(19, "no")}
+                    name="rear_seat_entertainment"
+                    id="rear_seat_no"
+                    checked={carDataTable.carVersionFeatures[27].value === "no"}
+                    onChange={() => handleFeatureChange(28, "no")}
                   />
                   <span> No</span>
                 </div>
@@ -3758,1269 +4029,1051 @@ type="text"
         </div>
       </div>
     </div>
-        {/* instrumentation */}
-        <div>
-
+  </div>
+      {/* comfort and convenience */}
       <div className="p-4">
         <button
-          onClick={() => setInstrumentAccordian(!instrumentAccordian)}
+          onClick={() => setcomfortAccordian(!comfortAccordian)}
           className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
         >
-          <span>Instrumentation</span>
-          {instrumentAccordian ? (
+          <span>Comfort & convenience</span>
+          {comfortAccordian ? (
             <MdExpandLess className="font-bold text-lg" />
           ) : (
             <MdExpandMore className="text-lg" />
           )}
         </button>
         <div
-          className={`grid overflow-hidden transition-all duration-500 ${
-            instrumentAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
-        >
-          <div className="grid grid-cols-2 overflow-hidden">
-            <div>
-              <p className="p-2 font-bold">Tachometer:</p>
-              <div className="flex gap-4 p-2">
-                <div>
-                  <input
-                    type="radio"
-                    name="tachometer"
-                    id="tachometer_yes"
-                    checked={carDataTable.carVersionFeatures[19].value === "yes"}
-                    onChange={() => handleFeatureChange(20, "yes")}
-                  />
-                  <span> Yes</span>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="tachometer"
-                    id="tachometer_no"
-                    checked={carDataTable.carVersionFeatures[19].value === "no"}
-                    onChange={() => handleFeatureChange(20, "no")}
-                  />
-                  <span> No</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <p className="p-2 font-bold">Multi info:</p>
-              <div className="flex gap-4 p-2">
-                <div>
-                  <input
-                    type="radio"
-                    name="multi_info"
-                    id="multi_info_yes"
-                    checked={carDataTable.carVersionFeatures[20].value === "yes"}
-                    onChange={() => handleFeatureChange(21, "yes")}
-                  />
-                  <span> Yes</span>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="multi_info"
-                    id="multi_info_no"
-                    checked={carDataTable.carVersionFeatures[20].value === "no"}
-                    onChange={() => handleFeatureChange(21, "no")}
-                  />
-                  <span> No</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        {/* entertainment */}
-        <div>
-      <div className="p-4">
-        <button
-          onClick={() => setEntertainmentAccordian(!entertainmentAccordian)}
-          className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-        >
-          <span>Entertainment</span>
-          {entertainmentAccordian ? (
-            <MdExpandLess className="font-bold text-lg" />
-          ) : (
-            <MdExpandMore className="text-lg" />
-          )}
-        </button>
-        <div
-          className={`grid overflow-hidden transition-all duration-500 ${
-            entertainmentAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          className={`grid overflow-hidden transition-all  duration-500 ${
+            comfortAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           }`}
         >
           <div className="overflow-hidden">
-            <div className="grid grid-cols-3 gap-4 items-center">
-              <p className="p-2 font-bold">Display Size in:</p>
-              <input
-                placeholder="Enter in English"
-                className="border p-2 w-3/4 col-span-1"
-                value={carDataTable.carVersionFeatures[24].value}
-                onChange={(e) => handleFeatureChange(25, e.target.value)}
-              />
-              <input
-                placeholder="Enter in Arabic"
-                className="border hidden p-2 w-3/4 col-span-1"
-                // onChange={(e) => handleFeatureChange(25, e.target.value)}
-              />
-            </div>
-            <div className="grid grid-cols-3">
-              <div>
-                <p className="p-2 font-bold">CD player:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="cd_player"
-                      id="cd_yes"
-                      checked={carDataTable.carVersionFeatures[21].value === "yes"}
-                      onChange={() => handleFeatureChange(22, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="cd_player"
-                      id="cd_no"
-                      checked={carDataTable.carVersionFeatures[21].value === "no"}
-                      onChange={() => handleFeatureChange(22, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="p-2 font-bold">DVD player:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="dvd_player"
-                      id="dvd_yes"
-                      checked={carDataTable.carVersionFeatures[22].value === "yes"}
-                      onChange={() => handleFeatureChange(23, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="dvd_player"
-                      id="dvd_no"
-                      checked={carDataTable.carVersionFeatures[22].value === "no"}
-                      onChange={() => handleFeatureChange(23, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="p-2 font-bold">USB and auxiliary cable:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="auxiliary_cable"
-                      id="aux_yes"
-                      checked={carDataTable.carVersionFeatures[23].value === "yes"}
-                      onChange={() => handleFeatureChange(24, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="auxiliary_cable"
-                      id="aux_no"
-                      checked={carDataTable.carVersionFeatures[23].value === "no"}
-                      onChange={() => handleFeatureChange(24, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="p-2 font-bold">Front Speakers:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="frontSpeakers"
-                      id="front_yes"
-                      checked={carDataTable.carVersionFeatures[25].value === "yes"}
-                      onChange={() => handleFeatureChange(26, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="frontSpeakers"
-                      id="front_no"
-                      checked={carDataTable.carVersionFeatures[25].value === "no"}
-                      onChange={() => handleFeatureChange(26, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="p-2 font-bold">Rear speakers:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="rear_speakers"
-                      id="rear_yes"
-                      checked={carDataTable.carVersionFeatures[26].value === "yes"}
-                      onChange={() => handleFeatureChange(27, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="rear_speakers"
-                      id="rear_no"
-                      checked={carDataTable.carVersionFeatures[26].value === "no"}
-                      onChange={() => handleFeatureChange(27, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="p-2 font-bold">Rear seat entertainment:</p>
-                <div className="flex gap-2 p-2">
-                  <div>
-                    <input
-                      type="radio"
-                      name="rear_seat_entertainment"
-                      id="rear_seat_yes"
-                      checked={carDataTable.carVersionFeatures[27].value === "yes"}
-                      onChange={() => handleFeatureChange(28, "yes")}
-                    />
-                    <span> Yes</span>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="rear_seat_entertainment"
-                      id="rear_seat_no"
-                      checked={carDataTable.carVersionFeatures[27].value === "no"}
-                      onChange={() => handleFeatureChange(28, "no")}
-                    />
-                    <span> No</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <select /* value={carDataTable.carVersionFeatures[32].value} */ onChange={(e) => handleFeatureChange(33, e.target.value)} id="33" className="w-[30%] border-blue-300 border p-2 rounded">
+              <option disabled  selected={!carDataTable?.carVersionFeatures[32]?.value?.length}>Key type</option>
+              <option value={"Traditional Key"}>Traditional Key</option>
+              <option value={"Manual Key"}>Manual Key</option>
+              <option value={"Jack Knife with Keyless Entry"}>Jack Knife with Keyless Entry</option>
+              <option value={"Remote Key (Key Fob)"}>Remote Key (Key Fob)</option>
+              <option value={"Transponder Key"}>Transponder Key</option>
+              <option value={"Smart Key (Keyless Entry and Start)"}>Smart Key (Keyless Entry and Start)</option>
+              <option value={"Smart Entry with Panic"}>Smart Entry with Panic</option>
+              <option value={"Key Card"}>Key Card</option>
+              <option value={"Digital Key"}>Digital Key</option>
+              <option value={"Switchblade Key"}>Switchblade Key</option>
+            </select>
+            <select /* value={carDataTable.carVersionFeatures[57].value} */ onChange={(e) => handleFeatureChange(58, e.target.value)} id="58" className="w-[30%] ml-10 border-blue-300 border p-2 rounded ">
+              <option  selected={!(carDataTable?.carVersionFeatures[57]?.value?.length > 0)} disabled>Handbrake</option>
+              <option value={"Manual Handbrake"}>Manual Handbrake</option>
+              <option value={"Foot-operated Handbrake"}>Foot-operated Handbrake</option>
+              <option value={"Electronic Parking Brake (EPB)"}>Electronic Parking Brake (EPB)</option>
+            </select>
+            <select /* value={carDataTable.carVersionFeatures[54].value} */ onChange={(e) => handleFeatureChange(55, e.target.value)} id="55" className="w-[30%] ml-10 border-blue-300 border p-2 rounded">
+              <option selected={!carDataTable?.carVersionFeatures[54]?.value?.length}  disabled>Seat Material Type</option>
+              <option value={"Leather"}>Leather</option>
+              <option value={"Suede with Manual Adjustment"}>Suede with Manual Adjustment</option>
+              <option value={"Leather with Powered Adjustment"}>Leather with Powered Adjustment</option>
+              <option value={"Premium Fabric with Manual Adjustment"}>Premium Fabric with Manual Adjustment</option>
+              <option value={"Synthetic Leather with Powered Adjustment"}>Synthetic Leather with Powered Adjustment</option>
+              <option value={"Leather with Manual Adjustment"}>Leather with Manual Adjustment</option>
+              <option value={"Hi Grade Fabric with Manual Adjustment"}>Hi Grade Fabric with Manual Adjustment</option>
+              <option value={"Black Leather with Manual Adjustment"}>Black Leather with Manual Adjustment</option>
+              <option value={"Fabric"}>Fabric</option>
+              <option value={"Fabric with Manual Adjustment"}>Fabric with Manual Adjustment</option>
+              <option value={"Fabric with Power Adjustment"}>Fabric with power adjustment</option>
+              <option value={"Synthetic Leather"}>Synthetic Leather</option>
+              <option value={"Synthetic Leather with Manual Adjustment"}>Synthetic Leather with Manual Adjustment</option>
+              <option value={"Vinyl"}>Vinyl</option>
+              <option value={"Vinyl with Manual Adjustment"}>Vinyl with Manual Adjustment</option>
+              <option value={"Alcantara with Manual Adjustment"}>Alcantara with Manual Adjustment</option>
+              <option value={"Mesh with Manual Adjustment"}>Mesh with Manual Adjustment</option>
+            </select>
+            <div className="grid grid-cols-3 gap-2">
+            <div>
+      <p className="p-2 font-bold">Rear headrest:</p>
+      <div className="flex gap-2 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_side"
+            checked={carDataTable.carVersionFeatures[52].value === "0"}
+            onChange={() => handleFeatureChange(53, "0")}
+          />
+          <span>0</span>
+          {/* <span> Two side rear headrests</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_side"
+            checked={carDataTable.carVersionFeatures[52].value === "1"}
+            onChange={() => handleFeatureChange(53, "1")}
+          />
+          <span> 1</span>
+          {/* <span> Two side rear headrests</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "2"}
+            onChange={() => handleFeatureChange(53, "2")}
+          />
+          <span> 2</span>
+          {/* <span> One center rear headrest</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "3"}
+            onChange={() => handleFeatureChange(53, "3")}
+          />
+          <span> 3</span>
+          {/* <span> One center rear headrest</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "4"}
+            onChange={() => handleFeatureChange(53, "4")}
+          />
+          <span> 4</span>
+          {/* <span> One center rear headrest</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "5"}
+            onChange={() => handleFeatureChange(53, "5")}
+          />
+          <span>5</span>
+          {/* <span> One center rear headrest</span> */}
+          <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "6"}
+            onChange={() => handleFeatureChange(53, "6")}
+          />
+          <span>6</span>
+          {/* <span> One center rear headrest</span> */}
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_headrest"
+            id="rear_headrest_center"
+            checked={carDataTable.carVersionFeatures[52].value === "7"}
+            onChange={() => handleFeatureChange(53, "7")}
+          />
+          <span> 7</span>
+          {/* <span> One center rear headrest</span> */}
+        </div>
         </div>
       </div>
     </div>
-        {/* comfort and convenience */}
-        <div className="p-4">
-          <button
-            onClick={() => setcomfortAccordian(!comfortAccordian)}
-            className="flex bg-slate-300 p-2 font-bold text-lg rounded mb-2 w-[100%] justify-between"
-          >
-            <span>Comfort & convenience</span>
-            {comfortAccordian ? (
-              <MdExpandLess className="font-bold text-lg" />
-            ) : (
-              <MdExpandMore className="text-lg" />
-            )}
-          </button>
-          <div
-            className={`grid overflow-hidden transition-all  duration-500 ${
-              comfortAccordian ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <select /* value={carDataTable.carVersionFeatures[32].value} */ onChange={(e) => handleFeatureChange(33, e.target.value)} id="33" className="w-[30%] border-blue-300 border p-2 rounded">
-                <option disabled  selected={!carDataTable?.carVersionFeatures[32]?.value?.length}>Key type</option>
-                <option value={"Traditional Key"}>Traditional Key</option>
-                <option value={"Manual Key"}>Manual Key</option>
-                <option value={"Jack Knife with Keyless Entry"}>Jack Knife with Keyless Entry</option>
-                <option value={"Remote Key (Key Fob)"}>Remote Key (Key Fob)</option>
-                <option value={"Transponder Key"}>Transponder Key</option>
-                <option value={"Smart Key (Keyless Entry and Start)"}>Smart Key (Keyless Entry and Start)</option>
-                <option value={"Key Card"}>Key Card</option>
-                <option value={"Digital Key"}>Digital Key</option>
-                <option value={"Switchblade Key"}>Switchblade Key</option>
-              </select>
-              <select /* value={carDataTable.carVersionFeatures[57].value} */ onChange={(e) => handleFeatureChange(58, e.target.value)} id="58" className="w-[30%] ml-10 border-blue-300 border p-2 rounded ">
-                <option  selected={!(carDataTable?.carVersionFeatures[57]?.value?.length > 0)} disabled>Handbrake</option>
-                <option value={"Manual Handbrake"}>Manual Handbrake</option>
-                <option value={"Foot-operated Handbrake"}>Foot-operated Handbrake</option>
-                <option value={"Electronic Parking Brake (EPB)"}>Electronic Parking Brake (EPB)</option>
-              </select>
-              <select /* value={carDataTable.carVersionFeatures[54].value} */ onChange={(e) => handleFeatureChange(55, e.target.value)} id="55" className="w-[30%] ml-10 border-blue-300 border p-2 rounded">
-                <option selected={!carDataTable?.carVersionFeatures[54]?.value?.length}  disabled>Seat Material Type</option>
-                <option value={"Leather"}>Leather</option>
-                <option value={"Leather with Powered Adjustment"}>Leather with Powered Adjustment</option>
-                <option value={"Premium Fabric with Manual Adjustment"}>Premium Fabric with Manual Adjustment</option>
-                <option value={"Leather with Manual Adjustment"}>Leather with Manual Adjustment</option>
-                <option value={"Hi Grade Fabric with Manual Adjustment"}>Hi Grade Fabric with Manual Adjustment</option>
-                <option value={"Fabric with Power Adjustment"}>Fabric with power adjustment</option>
-                <option value={"Black Leather with Manual Adjustment"}>Black Leather with Manual Adjustment</option>
-                <option value={"Fabric"}>Fabric</option>
-                <option value={"Fabric with Manual Adjustment"}>Fabric with Manual Adjustment</option>
-                <option value={"Synthetic Leather"}>Synthetic Leather</option>
-                <option value={"Synthetic Leather with Manual Adjustment"}>Synthetic Leather with Manual Adjustment</option>
-                <option value={"Vinyl"}>Vinyl</option>
-                <option value={"Vinyl with Manual Adjustment"}>Vinyl with Manual Adjustment</option>
-                <option value={"Alcantara with Manual Adjustment"}>Alcantara with Manual Adjustment</option>
-                <option value={"Mesh with Manual Adjustment"}>Mesh with Manual Adjustment</option>
-              </select>
-              <div className="grid grid-cols-3 gap-2">
-              <div>
-              <p className="p-2 font-bold">Rear headrest:</p>
-        <div className="flex gap-2 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_headrest"
-              id="rear_headrest_side"
-              checked={carDataTable.carVersionFeatures[52].value === "0"}
-              onChange={() => handleFeatureChange(53, "0")}
-            />
-            <span>0</span>
-            {/* <span> Two side rear headrests</span> */}
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_headrest"
-              id="rear_headrest_side"
-              checked={carDataTable.carVersionFeatures[52].value === "1"}
-              onChange={() => handleFeatureChange(53, "1")}
-            />
-            <span> 1</span>
-            {/* <span> Two side rear headrests</span> */}
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_headrest"
-              id="rear_headrest_center"
-              checked={carDataTable.carVersionFeatures[52].value === "2"}
-              onChange={() => handleFeatureChange(53, "2")}
-            />
-            <span> 2</span>
-            {/* <span> One center rear headrest</span> */}
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_headrest"
-              id="rear_headrest_center"
-              checked={carDataTable.carVersionFeatures[52].value === "3"}
-              onChange={() => handleFeatureChange(53, "3")}
-            />
-            <span> 3</span>
-            {/* <span> One center rear headrest</span> */}
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <p className="p-2 font-bold">Climate control:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="climate_control"
-              id="climate_control_yes"
-              checked={carDataTable.carVersionFeatures[29].value === "yes"}
-              onChange={() => handleFeatureChange(30, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="climate_control"
-              id="climate_control_no"
-              checked={carDataTable.carVersionFeatures[29].value === "no"}
-              onChange={() => handleFeatureChange(30, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Air conditioner:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="air_conditioner"
-              id="air_conditioner_yes"
-              checked={carDataTable.carVersionFeatures[28].value === "yes"}
-              onChange={() => handleFeatureChange(29, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="air_conditioner"
-              id="air_conditioner_no"
-              checked={carDataTable.carVersionFeatures[28].value === "no"}
-              onChange={() => handleFeatureChange(29, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Heater:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="heater"
-              id="heater_yes"
-              checked={carDataTable.carVersionFeatures[30].value === "yes"}
-              onChange={() => handleFeatureChange(31, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="heater"
-              id="heater_no"
-              checked={carDataTable.carVersionFeatures[30].value === "no"}
-              onChange={() => handleFeatureChange(31, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Defogger:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="defogger"
-              id="defogger_yes"
-              checked={carDataTable.carVersionFeatures[31].value === "yes"}
-              onChange={() => handleFeatureChange(32, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="defogger"
-              id="defogger_no"
-              checked={carDataTable.carVersionFeatures[31].value === "no"}
-              onChange={() => handleFeatureChange(32, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Keyless entry:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="keyless_entry"
-              id="keyless_entry_yes"
-              checked={carDataTable.carVersionFeatures[33].value === "yes"}
-              onChange={() => handleFeatureChange(34, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="keyless_entry"
-              id="keyless_entry_no"
-              checked={carDataTable.carVersionFeatures[33].value === "no"}
-              onChange={() => handleFeatureChange(34, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Push start:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="push_start"
-              id="push_start_yes"
-              checked={carDataTable.carVersionFeatures[34].value === "yes"}
-              onChange={() => handleFeatureChange(35, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="push_start"
-              id="push_start_no"
-              checked={carDataTable.carVersionFeatures[34].value === "no"}
-              onChange={() => handleFeatureChange(35, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Central locking:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="central_locking"
-              id="central_locking_yes"
-              checked={carDataTable.carVersionFeatures[35].value === "yes"}
-              onChange={() => handleFeatureChange(36, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="central_locking"
-              id="central_locking_no"
-              checked={carDataTable.carVersionFeatures[35].value === "no"}
-              onChange={() => handleFeatureChange(36, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Power door locks:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="power_door_locks"
-              id="power_door_locks_yes"
-              checked={carDataTable.carVersionFeatures[36].value === "yes"}
-              onChange={() => handleFeatureChange(37, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="power_door_locks"
-              id="power_door_locks_no"
-              checked={carDataTable.carVersionFeatures[36].value === "no"}
-              onChange={() => handleFeatureChange(37, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Power steering:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="power_steering"
-              id="power_steering_yes"
-              checked={carDataTable.carVersionFeatures[37].value === "yes"}
-              onChange={() => handleFeatureChange(38, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="power_steering"
-              id="power_steering_no"
-              checked={carDataTable.carVersionFeatures[37].value === "no"}
-              onChange={() => handleFeatureChange(38, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Power windows:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="power_windows"
-              id="power_windows_yes"
-              checked={carDataTable.carVersionFeatures[38].value === "yes"}
-              onChange={() => handleFeatureChange(39, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="power_windows"
-              id="power_windows_no"
-              checked={carDataTable.carVersionFeatures[38].value === "no"}
-              onChange={() => handleFeatureChange(39, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Power mirrors:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="power_mirrors"
-              id="power_mirrors_yes"
-              checked={carDataTable.carVersionFeatures[39].value === "yes"}
-              onChange={() => handleFeatureChange(40, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="power_mirrors"
-              id="power_mirrors_no"
-              checked={carDataTable.carVersionFeatures[39].value === "no"}
-              onChange={() => handleFeatureChange(40, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-                {/*  */}
-                <div>
-        <p className="p-2 font-bold">Power boot:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="power_boot"
-              id="power_boot_yes"
-              checked={carDataTable.carVersionFeatures[40].value === "yes"}
-              onChange={() => handleFeatureChange(41, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="power_boot"
-              id="power_boot_no"
-              checked={carDataTable.carVersionFeatures[40].value === "no"}
-              onChange={() => handleFeatureChange(41, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Steering adjustment:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="steering_adjustment"
-              id="steering_adjustment_yes"
-              checked={carDataTable.carVersionFeatures[41].value === "yes"}
-              onChange={() => handleFeatureChange(42, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="steering_adjustment"
-              id="steering_adjustment_no"
-              checked={carDataTable.carVersionFeatures[41].value === "no"}
-              onChange={() => handleFeatureChange(42, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Steering switches:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="steering_switches"
-              id="steering_switches_yes"
-              checked={carDataTable.carVersionFeatures[42].value === "yes"}
-              onChange={() => handleFeatureChange(43, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="steering_switches"
-              id="steering_switches_no"
-              checked={carDataTable.carVersionFeatures[42].value === "no"}
-              onChange={() => handleFeatureChange(43, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Cruise control:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="cruise_control"
-              id="cruise_control_yes"
-              checked={carDataTable.carVersionFeatures[43].value === "yes"}
-              onChange={() => handleFeatureChange(44, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="cruise_control"
-              id="cruise_control_no"
-              checked={carDataTable.carVersionFeatures[43].value === "no"}
-              onChange={() => handleFeatureChange(44, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Driving modes:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="driving_modes"
-              id="driving_modes_yes"
-              checked={carDataTable.carVersionFeatures[44].value === "yes"}
-              onChange={() => handleFeatureChange(45, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="driving_modes"
-              id="driving_modes_no"
-              checked={carDataTable.carVersionFeatures[44].value === "no"}
-              onChange={() => handleFeatureChange(45, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Navigation:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="navigation"
-              id="navigation_yes"
-              checked={carDataTable.carVersionFeatures[45].value === "yes"}
-              onChange={() => handleFeatureChange(46, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="navigation"
-              id="navigation_no"
-              checked={carDataTable.carVersionFeatures[45].value === "no"}
-              onChange={() => handleFeatureChange(46, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Optional navigation:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="optional_navigation"
-              id="optional_navigation_yes"
-              checked={carDataTable.carVersionFeatures[46].value === "yes"}
-              onChange={() => handleFeatureChange(47, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="optional_navigation"
-              id="optional_navigation_no"
-              checked={carDataTable.carVersionFeatures[46].value === "no"}
-              onChange={() => handleFeatureChange(47, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Front Camera:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="frontCamera"
-              id="frontCamera_yes"
-              checked={carDataTable.carVersionFeatures[47].value === "yes"}
-              onChange={() => handleFeatureChange(48, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="frontCamera"
-              id="frontCamera_no"
-              checked={carDataTable.carVersionFeatures[47].value === "no"}
-              onChange={() => handleFeatureChange(48, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Rear camera:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_camera"
-              id="rear_camera_yes"
-              checked={carDataTable.carVersionFeatures[48].value === "yes"}
-              onChange={() => handleFeatureChange(49, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_camera"
-              id="rear_camera_no"
-              checked={carDataTable.carVersionFeatures[48].value === "no"}
-              onChange={() => handleFeatureChange(49, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p className="p-2 font-bold">Rear central control:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_central_control"
-              id="rear_central_control_yes"
-              checked={carDataTable.carVersionFeatures[49].value === "yes"}
-              onChange={() => handleFeatureChange(50, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_central_control"
-              id="rear_central_control_no"
-              checked={carDataTable.carVersionFeatures[49].value === "no"}
-              onChange={() => handleFeatureChange(50, "no")}
-            />
-            <span> No</span>
-          </div>
-        </div>
-      </div>
-    {/* </div> */}
     <div>
-        <p className="p-2 font-bold">Rear ac vents:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_ac_vents"
-              id="rear_ac_vents_yes"
-              checked={carDataTable.carVersionFeatures[50].value === "yes"}
-              onChange={() => handleFeatureChange(51, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_ac_vents"
-              id="rear_ac_vents_no"
-              checked={carDataTable.carVersionFeatures[50].value === "no"}
-              onChange={() => handleFeatureChange(51, "no")}
-            />
-            <span> No</span>
-          </div>
+      <p className="p-2 font-bold">Climate control:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="climate_control"
+            id="climate_control_yes"
+            checked={carDataTable.carVersionFeatures[29].value === "yes"}
+            onChange={() => handleFeatureChange(30, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="climate_control"
+            id="climate_control_no"
+            checked={carDataTable.carVersionFeatures[29].value === "no"}
+            onChange={() => handleFeatureChange(30, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Rear folding seat:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_folding_seat"
-              id="rear_folding_seat_yes"
-              checked={carDataTable.carVersionFeatures[51].value === "yes"}
-              onChange={() => handleFeatureChange(52, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_folding_seat"
-              id="rear_folding_seat_no"
-              checked={carDataTable.carVersionFeatures[51].value === "no"}
-              onChange={() => handleFeatureChange(52, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Air conditioner:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="air_conditioner"
+            id="air_conditioner_yes"
+            checked={carDataTable.carVersionFeatures[28].value === "yes"}
+            onChange={() => handleFeatureChange(29, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="air_conditioner"
+            id="air_conditioner_no"
+            checked={carDataTable.carVersionFeatures[28].value === "no"}
+            onChange={() => handleFeatureChange(29, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Rear wiper:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_wiper"
-              id="rear_wiper_yes"
-              checked={carDataTable.carVersionFeatures[53].value === "yes"}
-              onChange={() => handleFeatureChange(54, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_wiper"
-              id="rear_wiper_no"
-              checked={carDataTable.carVersionFeatures[53].value === "no"}
-              onChange={() => handleFeatureChange(54, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Heater:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="heater"
+            id="heater_yes"
+            checked={carDataTable.carVersionFeatures[30].value === "yes"}
+            onChange={() => handleFeatureChange(31, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="heater"
+            id="heater_no"
+            checked={carDataTable.carVersionFeatures[30].value === "no"}
+            onChange={() => handleFeatureChange(31, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Heated seats:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="heated_seats"
-              id="heated_seats_yes"
-              checked={carDataTable.carVersionFeatures[55].value === "yes"}
-              onChange={() => handleFeatureChange(56, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="heated_seats"
-              id="heated_seats_no"
-              checked={carDataTable.carVersionFeatures[55].value === "no"}
-              onChange={() => handleFeatureChange(56, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Defogger:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="defogger"
+            id="defogger_yes"
+            checked={carDataTable.carVersionFeatures[31].value === "yes"}
+            onChange={() => handleFeatureChange(32, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="defogger"
+            id="defogger_no"
+            checked={carDataTable.carVersionFeatures[31].value === "no"}
+            onChange={() => handleFeatureChange(32, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Arm rest:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="arm_rest"
-              id="arm_rest_yes"
-              checked={carDataTable.carVersionFeatures[56].value === "yes"}
-              onChange={() => handleFeatureChange(57, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="arm_rest"
-              id="arm_rest_no"
-              checked={carDataTable.carVersionFeatures[56].value === "no"}
-              onChange={() => handleFeatureChange(57, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Keyless entry:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="keyless_entry"
+            id="keyless_entry_yes"
+            checked={carDataTable.carVersionFeatures[33].value === "yes"}
+            onChange={() => handleFeatureChange(34, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="keyless_entry"
+            id="keyless_entry_no"
+            checked={carDataTable.carVersionFeatures[33].value === "no"}
+            onChange={() => handleFeatureChange(34, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Cup holders:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="cup_holders"
-              id="cup_holders_yes"
-              checked={carDataTable.carVersionFeatures[58].value === "yes"}
-              onChange={() => handleFeatureChange(59, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="cup_holders"
-              id="cup_holders_no"
-              checked={carDataTable.carVersionFeatures[58].value === "no"}
-              onChange={() => handleFeatureChange(59, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Push start:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="push_start"
+            id="push_start_yes"
+            checked={carDataTable.carVersionFeatures[34].value === "yes"}
+            onChange={() => handleFeatureChange(35, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="push_start"
+            id="push_start_no"
+            checked={carDataTable.carVersionFeatures[34].value === "no"}
+            onChange={() => handleFeatureChange(35, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Cool box:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="cool_box"
-              id="cool_box_yes"
-              checked={carDataTable.carVersionFeatures[59].value === "yes"}
-              onChange={() => handleFeatureChange(60, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="cool_box"
-              id="cool_box_no"
-              checked={carDataTable.carVersionFeatures[59].value === "no"}
-              onChange={() => handleFeatureChange(60, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Central locking:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="central_locking"
+            id="central_locking_yes"
+            checked={carDataTable.carVersionFeatures[35].value === "yes"}
+            onChange={() => handleFeatureChange(36, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="central_locking"
+            id="central_locking_no"
+            checked={carDataTable.carVersionFeatures[35].value === "no"}
+            onChange={() => handleFeatureChange(36, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Interior lighting:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="interior_lighting"
-              id="interior_lighting_yes"
-              checked={carDataTable.carVersionFeatures[60].value === "yes"}
-              onChange={() => handleFeatureChange(61, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="interior_lighting"
-              id="interior_lighting_no"
-              checked={carDataTable.carVersionFeatures[60].value === "no"}
-              onChange={() => handleFeatureChange(61, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Power door locks:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="power_door_locks"
+            id="power_door_locks_yes"
+            checked={carDataTable.carVersionFeatures[36].value === "yes"}
+            onChange={() => handleFeatureChange(37, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="power_door_locks"
+            id="power_door_locks_no"
+            checked={carDataTable.carVersionFeatures[36].value === "no"}
+            onChange={() => handleFeatureChange(37, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Front Power outlet:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="frontPower_outlet"
-              id="frontPower_outlet_yes"
-              checked={carDataTable.carVersionFeatures[61].value === "yes"}
-              onChange={() => handleFeatureChange(62, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="frontPower_outlet"
-              id="frontPower_outlet_no"
-              checked={carDataTable.carVersionFeatures[61].value === "no"}
-              onChange={() => handleFeatureChange(62, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Power steering:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="power_steering"
+            id="power_steering_yes"
+            checked={carDataTable.carVersionFeatures[37].value === "yes"}
+            onChange={() => handleFeatureChange(38, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="power_steering"
+            id="power_steering_no"
+            checked={carDataTable.carVersionFeatures[37].value === "no"}
+            onChange={() => handleFeatureChange(38, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
+    </div>
 
-      <div>
-        <p className="p-2 font-bold">Rear power outlet:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="rear_power_outlet"
-              id="rear_power_outlet_yes"
-              checked={carDataTable.carVersionFeatures[62].value === "yes"}
-              onChange={() => handleFeatureChange(63, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rear_power_outlet"
-              id="rear_power_outlet_no"
-              checked={carDataTable.carVersionFeatures[62].value === "no"}
-              onChange={() => handleFeatureChange(63, "no")}
-            />
-            <span> No</span>
-          </div>
+    <div>
+      <p className="p-2 font-bold">Power windows:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="power_windows"
+            id="power_windows_yes"
+            checked={carDataTable.carVersionFeatures[38].value === "yes"}
+            onChange={() => handleFeatureChange(39, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="power_windows"
+            id="power_windows_no"
+            checked={carDataTable.carVersionFeatures[38].value === "no"}
+            onChange={() => handleFeatureChange(39, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
-       <div>
-        <p className="p-2 font-bold">FM/AM Radio:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="fm/am"
-              id="fm/am_yes"
-              checked={carDataTable.carVersionFeatures[63].value === "yes"}
-              onChange={() => handleFeatureChange(64, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="fm/am"
-              id="fm/am_no"
-              checked={carDataTable.carVersionFeatures[63].value === "no"}
-              onChange={() => handleFeatureChange(64, "no")}
-            />
-            <span> No</span>
-          </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Power mirrors:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="power_mirrors"
+            id="power_mirrors_yes"
+            checked={carDataTable.carVersionFeatures[39].value === "yes"}
+            onChange={() => handleFeatureChange(40, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="power_mirrors"
+            id="power_mirrors_no"
+            checked={carDataTable.carVersionFeatures[39].value === "no"}
+            onChange={() => handleFeatureChange(40, "no")}
+          />
+          <span> No</span>
         </div>
       </div>
-      <div>
-        <p className="p-2 font-bold">Cassette Player:</p>
-        <div className="flex gap-4 p-2">
-          <div>
-            <input
-              type="radio"
-              name="casset_player"
-              id="casset_player_yes"
-              checked={carDataTable.carVersionFeatures[64].value === "yes"}
-              onChange={() => handleFeatureChange(65, "yes")}
-            />
-            <span> Yes</span>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="casset_player"
-              id="casset_player_no"
-              checked={carDataTable.carVersionFeatures[64].value === "no"}
-              onChange={() => handleFeatureChange(65, "no")}
-            />
-            <span> No</span>
-          </div>
+    </div>
+              {/*  */}
+              <div>
+      <p className="p-2 font-bold">Power boot:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="power_boot"
+            id="power_boot_yes"
+            checked={carDataTable.carVersionFeatures[40].value === "yes"}
+            onChange={() => handleFeatureChange(41, "yes")}
+          />
+          <span> Yes</span>
         </div>
-      </div> 
-              </div>
+        <div>
+          <input
+            type="radio"
+            name="power_boot"
+            id="power_boot_no"
+            checked={carDataTable.carVersionFeatures[40].value === "no"}
+            onChange={() => handleFeatureChange(41, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Steering adjustment:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="steering_adjustment"
+            id="steering_adjustment_yes"
+            checked={carDataTable.carVersionFeatures[41].value === "yes"}
+            onChange={() => handleFeatureChange(42, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="steering_adjustment"
+            id="steering_adjustment_no"
+            checked={carDataTable.carVersionFeatures[41].value === "no"}
+            onChange={() => handleFeatureChange(42, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Steering switches:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="steering_switches"
+            id="steering_switches_yes"
+            checked={carDataTable.carVersionFeatures[42].value === "yes"}
+            onChange={() => handleFeatureChange(43, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="steering_switches"
+            id="steering_switches_no"
+            checked={carDataTable.carVersionFeatures[42].value === "no"}
+            onChange={() => handleFeatureChange(43, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Cruise control:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="cruise_control"
+            id="cruise_control_yes"
+            checked={carDataTable.carVersionFeatures[43].value === "yes"}
+            onChange={() => handleFeatureChange(44, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="cruise_control"
+            id="cruise_control_no"
+            checked={carDataTable.carVersionFeatures[43].value === "no"}
+            onChange={() => handleFeatureChange(44, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Driving modes:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="driving_modes"
+            id="driving_modes_yes"
+            checked={carDataTable.carVersionFeatures[44].value === "yes"}
+            onChange={() => handleFeatureChange(45, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="driving_modes"
+            id="driving_modes_no"
+            checked={carDataTable.carVersionFeatures[44].value === "no"}
+            onChange={() => handleFeatureChange(45, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Navigation:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="navigation"
+            id="navigation_yes"
+            checked={carDataTable.carVersionFeatures[45].value === "yes"}
+            onChange={() => handleFeatureChange(46, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="navigation"
+            id="navigation_no"
+            checked={carDataTable.carVersionFeatures[45].value === "no"}
+            onChange={() => handleFeatureChange(46, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Optional navigation:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="optional_navigation"
+            id="optional_navigation_yes"
+            checked={carDataTable.carVersionFeatures[46].value === "yes"}
+            onChange={() => handleFeatureChange(47, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="optional_navigation"
+            id="optional_navigation_no"
+            checked={carDataTable.carVersionFeatures[46].value === "no"}
+            onChange={() => handleFeatureChange(47, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Front Camera:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="frontCamera"
+            id="frontCamera_yes"
+            checked={carDataTable.carVersionFeatures[47].value === "yes"}
+            onChange={() => handleFeatureChange(48, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="frontCamera"
+            id="frontCamera_no"
+            checked={carDataTable.carVersionFeatures[47].value === "no"}
+            onChange={() => handleFeatureChange(48, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Rear camera:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_camera"
+            id="rear_camera_yes"
+            checked={carDataTable.carVersionFeatures[48].value === "yes"}
+            onChange={() => handleFeatureChange(49, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_camera"
+            id="rear_camera_no"
+            checked={carDataTable.carVersionFeatures[48].value === "no"}
+            onChange={() => handleFeatureChange(49, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Rear central control:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_central_control"
+            id="rear_central_control_yes"
+            checked={carDataTable.carVersionFeatures[49].value === "yes"}
+            onChange={() => handleFeatureChange(50, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_central_control"
+            id="rear_central_control_no"
+            checked={carDataTable.carVersionFeatures[49].value === "no"}
+            onChange={() => handleFeatureChange(50, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+  {/* </div> */}
+  <div>
+      <p className="p-2 font-bold">Rear ac vents:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_ac_vents"
+            id="rear_ac_vents_yes"
+            checked={carDataTable.carVersionFeatures[50].value === "yes"}
+            onChange={() => handleFeatureChange(51, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_ac_vents"
+            id="rear_ac_vents_no"
+            checked={carDataTable.carVersionFeatures[50].value === "no"}
+            onChange={() => handleFeatureChange(51, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Rear folding seat:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_folding_seat"
+            id="rear_folding_seat_yes"
+            checked={carDataTable.carVersionFeatures[51].value === "yes"}
+            onChange={() => handleFeatureChange(52, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_folding_seat"
+            id="rear_folding_seat_no"
+            checked={carDataTable.carVersionFeatures[51].value === "no"}
+            onChange={() => handleFeatureChange(52, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Rear wiper:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_wiper"
+            id="rear_wiper_yes"
+            checked={carDataTable.carVersionFeatures[53].value === "yes"}
+            onChange={() => handleFeatureChange(54, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_wiper"
+            id="rear_wiper_no"
+            checked={carDataTable.carVersionFeatures[53].value === "no"}
+            onChange={() => handleFeatureChange(54, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Heated seats:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="heated_seats"
+            id="heated_seats_yes"
+            checked={carDataTable.carVersionFeatures[55].value === "yes"}
+            onChange={() => handleFeatureChange(56, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="heated_seats"
+            id="heated_seats_no"
+            checked={carDataTable.carVersionFeatures[55].value === "no"}
+            onChange={() => handleFeatureChange(56, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Arm rest:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="arm_rest"
+            id="arm_rest_yes"
+            checked={carDataTable.carVersionFeatures[56].value === "yes"}
+            onChange={() => handleFeatureChange(57, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="arm_rest"
+            id="arm_rest_no"
+            checked={carDataTable.carVersionFeatures[56].value === "no"}
+            onChange={() => handleFeatureChange(57, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Cup holders:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="cup_holders"
+            id="cup_holders_yes"
+            checked={carDataTable.carVersionFeatures[58].value === "yes"}
+            onChange={() => handleFeatureChange(59, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="cup_holders"
+            id="cup_holders_no"
+            checked={carDataTable.carVersionFeatures[58].value === "no"}
+            onChange={() => handleFeatureChange(59, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Cool box:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="cool_box"
+            id="cool_box_yes"
+            checked={carDataTable.carVersionFeatures[59].value === "yes"}
+            onChange={() => handleFeatureChange(60, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="cool_box"
+            id="cool_box_no"
+            checked={carDataTable.carVersionFeatures[59].value === "no"}
+            onChange={() => handleFeatureChange(60, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Interior lighting:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="interior_lighting"
+            id="interior_lighting_yes"
+            checked={carDataTable.carVersionFeatures[60].value === "yes"}
+            onChange={() => handleFeatureChange(61, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="interior_lighting"
+            id="interior_lighting_no"
+            checked={carDataTable.carVersionFeatures[60].value === "no"}
+            onChange={() => handleFeatureChange(61, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Front Power outlet:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="frontPower_outlet"
+            id="frontPower_outlet_yes"
+            checked={carDataTable.carVersionFeatures[61].value === "yes"}
+            onChange={() => handleFeatureChange(62, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="frontPower_outlet"
+            id="frontPower_outlet_no"
+            checked={carDataTable.carVersionFeatures[61].value === "no"}
+            onChange={() => handleFeatureChange(62, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p className="p-2 font-bold">Rear power outlet:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="rear_power_outlet"
+            id="rear_power_outlet_yes"
+            checked={carDataTable.carVersionFeatures[62].value === "yes"}
+            onChange={() => handleFeatureChange(63, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="rear_power_outlet"
+            id="rear_power_outlet_no"
+            checked={carDataTable.carVersionFeatures[62].value === "no"}
+            onChange={() => handleFeatureChange(63, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+     <div>
+      <p className="p-2 font-bold">FM/AM Radio:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="fm/am"
+            id="fm/am_yes"
+            checked={carDataTable.carVersionFeatures[63].value === "yes"}
+            onChange={() => handleFeatureChange(64, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="fm/am"
+            id="fm/am_no"
+            checked={carDataTable.carVersionFeatures[63].value === "no"}
+            onChange={() => handleFeatureChange(64, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p className="p-2 font-bold">Cassette Player:</p>
+      <div className="flex gap-4 p-2">
+        <div>
+          <input
+            type="radio"
+            name="casset_player"
+            id="casset_player_yes"
+            checked={carDataTable.carVersionFeatures[64].value === "yes"}
+            onChange={() => handleFeatureChange(65, "yes")}
+          />
+          <span> Yes</span>
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="casset_player"
+            id="casset_player_no"
+            checked={carDataTable.carVersionFeatures[64].value === "no"}
+            onChange={() => handleFeatureChange(65, "no")}
+          />
+          <span> No</span>
+        </div>
+      </div>
+    </div> 
             </div>
           </div>
         </div>
-
-        {/* <div className="flex flex-col mt-10 ml-2 items-center justify-center">
-          <label htmlFor="file-upload" className="font-bold">
-            Add Photos
-          </label>
-          <br />
-          <input className="mt-2" id="file-upload" type="file" />
-        </div> */}
-        {/* <br /><br /> */}
-        <div className="w-full grid place-items-center ">
-        <button disabled={loading} onClick={handleSendAllData} className="disabled:bg-[#1876D6]/70 rounded-md px-[14px] py-[5px] mb-[20px] ml-[45%] lato-bold text-white bg-[#1876D6]/100 m-auto"> {loading ? <div className="animate-spin rounded-full h-4 w-4 my-1 border-t-2 border-b-2 border-white mx-4"></div> : "Submit"}  </button>
-        </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>
-      {/* <div> */}
-      <h1>Currency Converter</h1>
-      <CurrencyConverter priceInRupees={priceInRupees} />
+
+      {/* <div className="flex flex-col mt-10 ml-2 items-center justify-center">
+        <label htmlFor="file-upload" className="font-bold">
+          Add Photos
+        </label>
+        <br />
+        <input className="mt-2" id="file-upload" type="file" />
+      </div> */}
+      {/* <br /><br /> */}
+      <div className="w-full grid place-items-center ">
+      <button disabled={loading} onClick={handleSendAllData} className="disabled:bg-[#1876D6]/70 rounded-md px-[14px] py-[5px] mb-[20px] ml-[45%] lato-bold text-white bg-[#1876D6]/100 m-auto"> {loading ? <div className="animate-spin rounded-full h-4 w-4 my-1 border-t-2 border-b-2 border-white mx-4"></div> : "Submit"}  </button>
+      </div>
     </div>
-          {/* </div> */}
-    </div>
-  
-  {/* <Routes>
-    <Route path="/search" element={<SearchCar />} />
-  </Routes> */}
-      </>
-  );
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div>
+    {/* <div> */}
+    <h1>Currency Converter</h1>
+    <CurrencyConverter priceInRupees={priceInRupees} />
+  </div>
+        {/* </div> */}
+  </div>
+{/* <Routes>
+  <Route path="/search" element={<SearchCar />} />
+</Routes> */}
+    </>
+);
 }
 
 export default App;
